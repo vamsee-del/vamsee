@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Privilege:analyticPrivilege xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:AccessControl="http://www.sap.com/ndb/SQLCoreModelAccessControl.ecore" xmlns:Privilege="http://www.sap.com/ndb/BiModelPrivilege.ecore" id="Privilege_CV" privilegeType="SQL_ANALYTIC_PRIVILEGE" schemaVersion="1.1">
+    <descriptions defaultDescription="Privilege_CV"/>
+    <securedModels>
+      <modelUri>Products</modelUri>
+      <modelUri>Sales_cv</modelUri>
+    </securedModels>
+
+<validity xsi:type="AccessControl:RangeValueFilter" including="true" operator="BT" lowValue="2023-11-25" highValue="2023-12-06"/>
+<conditionProcedureName>Products_proc</conditionProcedureName>
+</Privilege:analyticPrivilege>

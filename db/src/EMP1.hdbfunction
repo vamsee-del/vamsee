@@ -1,0 +1,13 @@
+FUNCTION "EMP1"( )
+    RETURNS TABLE
+    (
+        
+    )
+    
+
+    
+    LANGUAGE SQLSCRIPT
+    SQL SECURITY INVOKER AS
+BEGIN
+
+END;

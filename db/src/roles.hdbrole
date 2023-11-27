@@ -1,0 +1,8 @@
+{
+  "role": {
+    "name": "roles",
+    "global_roles": [
+      "devloper"
+    ]
+  }
+}

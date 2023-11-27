@@ -1,0 +1,15 @@
+{
+    "format_version": 1,
+    "imports": [{
+	    "target_table": "PRODUCTS",
+	    "source_data": {
+		    "data_type": "CSV",
+		    "file_name": "Products.csv",
+		    "has_header": true,
+		    "dialect": "HANA",
+		    "type_config": {
+			    "delimiter": ","
+		    }
+	    }
+	    }]
+}

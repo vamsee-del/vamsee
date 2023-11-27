@@ -1,0 +1,25 @@
+{
+  "role": {
+    "name": "PRIV_ROLE",
+    "system_privileges": [
+      "SYSTEM"
+    ],
+    "schema_analytic_privileges": [
+      {
+        "schema_reference": "/home/user/projects/HANA300/db/src/Data/loads/PRIV_ROLE.hdbroleconfig",
+        "privileges": [
+          "PRIV_CV"
+        ]
+      }
+    ],
+    "schema_roles": [
+      {
+        "schema_reference": "/home/user/projects/HANA300/db/src/Data/loads/PRIV_ROLE.hdbroleconfig",
+        "names": [
+          "Developer",
+          "Tester"
+        ]
+      }
+    ]
+  }
+}

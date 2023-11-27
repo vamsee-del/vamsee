@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="sales1" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" hierarchyGeneration="SQL" cacheInvalidationPeriod="NONE" enforceSqlExecution="true" propagateInstantiation="true">
+<descriptions defaultDescription="sales"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="sales">
+    <resourceUri>sales</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures/>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1">
+    <viewAttributes>
+      <viewAttribute id="REGION"/>
+      <viewAttribute id="COUNTRY"/>
+      <viewAttribute id="ITEMTYPE"/>
+      <viewAttribute id="SALESCHANNEL"/>
+      <viewAttribute id="ORDERPRIORITY"/>
+      <viewAttribute id="ORDERDATE"/>
+      <viewAttribute id="ORDERID"/>
+      <viewAttribute id="SHIPDATE"/>
+      <viewAttribute id="UNITSSOLD"/>
+      <viewAttribute id="UNITPRICE"/>
+      <viewAttribute id="UNITCOST"/>
+      <viewAttribute id="TOTALREVENUE"/>
+      <viewAttribute id="TOTALCOST"/>
+      <viewAttribute id="TOTALPROFIT"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="sales"/>
+  </calculationView>
+</calculationViews>
+
+<logicalModel id="Projection_1" ignoreMultipleOutputsForFilter="true">
+  <attributes>
+    <attribute id="REGION" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="REGION"/>
+      <keyMapping columnObjectName="Projection_1" columnName="REGION"/>
+    </attribute>
+    <attribute id="COUNTRY" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="COUNTRY"/>
+      <keyMapping columnObjectName="Projection_1" columnName="COUNTRY"/>
+    </attribute>
+    <attribute id="ITEMTYPE" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ITEMTYPE"/>
+      <keyMapping columnObjectName="Projection_1" columnName="ITEMTYPE"/>
+    </attribute>
+    <attribute id="SALESCHANNEL" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="SALESCHANNEL"/>
+      <keyMapping columnObjectName="Projection_1" columnName="SALESCHANNEL"/>
+    </attribute>
+    <attribute id="ORDERPRIORITY" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ORDERPRIORITY"/>
+      <keyMapping columnObjectName="Projection_1" columnName="ORDERPRIORITY"/>
+    </attribute>
+    <attribute id="ORDERDATE" order="6" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ORDERDATE"/>
+      <keyMapping columnObjectName="Projection_1" columnName="ORDERDATE"/>
+    </attribute>
+    <attribute id="SHIPDATE" order="8" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="SHIPDATE"/>
+      <keyMapping columnObjectName="Projection_1" columnName="SHIPDATE"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="ORDERID" order="7" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="ORDERID"/>
+      <measureMapping columnObjectName="Projection_1" columnName="ORDERID"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+    <measure id="UNITSSOLD" order="9" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="UNITSSOLD"/>
+      <measureMapping columnObjectName="Projection_1" columnName="UNITSSOLD"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+    <measure id="UNITPRICE" order="10" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="UNITPRICE"/>
+      <measureMapping columnObjectName="Projection_1" columnName="UNITPRICE"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+    <measure id="UNITCOST" order="11" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="UNITCOST"/>
+      <measureMapping columnObjectName="Projection_1" columnName="UNITCOST"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+    <measure id="TOTALREVENUE" order="12" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="TOTALREVENUE"/>
+      <measureMapping columnObjectName="Projection_1" columnName="TOTALREVENUE"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+    <measure id="TOTALCOST" order="13" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="TOTALCOST"/>
+      <measureMapping columnObjectName="Projection_1" columnName="TOTALCOST"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+    <measure id="TOTALPROFIT" order="14" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="TOTALPROFIT"/>
+      <measureMapping columnObjectName="Projection_1" columnName="TOTALPROFIT"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/>
+  <sharedDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="100" y="105"/>
+    
+      <rectangleSize width="160"/>
+    </shape>
+    
+  
+    <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="100" y="218"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+  
+    <shape modelObjectName="Projection_1" modelObjectNameSpace="StarJoinViewNodeInput" modelObjectType="repository">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

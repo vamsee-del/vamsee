@@ -1,0 +1,1 @@
+COLUMN TABLE "sales" (Region nvarchar(200),country nvarchar(200),itemtype nvarchar(200),saleschannel nvarchar(200),orderpriority nvarchar(200),orderdate nvarchar(200),orderid bigint,shipdate nvarchar(200),unitssold int,unitprice DECIMAL,unitcost decimal,totalrevenue dec,totalcost dec,totalprofit dec)

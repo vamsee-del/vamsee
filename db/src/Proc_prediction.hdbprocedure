@@ -1,0 +1,8 @@
+PROCEDURE "Proc_prediction"( )
+   LANGUAGE SQLSCRIPT
+   SQL SECURITY INVOKER
+   --DEFAULT SCHEMA <default_schema_name>
+   READS SQL DATA AS
+BEGIN
+   select orderline_number from "Prediction" where order_number > 10120;
+END

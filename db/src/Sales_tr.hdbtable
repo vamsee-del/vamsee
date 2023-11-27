@@ -1,0 +1,1 @@
+COLUMN TABLE "Sales_tr" (Age int,C_ID BIGINT,Name varchar(200),Surname varchar(200),Gender varchar(20),Region varchar(100),Roles varchar(200),D_Join nvarchar(200),Balance decimal);

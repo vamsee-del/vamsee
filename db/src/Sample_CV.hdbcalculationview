@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="Sample_CV" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" hierarchyGeneration="SQL" cacheInvalidationPeriod="NONE" enforceSqlExecution="true">
+<descriptions defaultDescription="Sample_CV"/>
+<localVariables/>
+<variableMappings/>
+<dataSources/>
+<snapshotProcedures/>
+<calculationViews/>
+
+<logicalModel ignoreMultipleOutputsForFilter="false">
+  <attributes>
+    <attribute id="ORDER_NUMBER$local">
+      <keyMapping columnObjectName="Sample_Sales" columnName="ORDER_NUMBER"/>
+    </attribute>
+    <attribute id="UNIT_PRICE$local">
+      <keyMapping columnObjectName="Sample_Sales" columnName="UNIT_PRICE"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures/>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/>
+  <sharedDimensions>
+    <logicalJoin associatedObjectUri="Sample_Sales"/>
+    <logicalJoin associatedObjectUri="Prediction">
+      <attributes>
+        <attributeRef>ORDER_NUMBER$local</attributeRef>
+      </attributes>
+      <associatedAttributeNames>
+        <attributeName>ORDER_NUMBER</attributeName>
+      </associatedAttributeNames>
+      <properties cardinality="CN_N" joinType="inner" joinOperator="Equal"/>
+      <temporalJoinProperties/>
+      <associatedAttributeFeatures/>
+    </logicalJoin>
+    <logicalJoin associatedObjectUri="PRODUCTS">
+      <attributes>
+        <attributeRef>UNIT_PRICE$local</attributeRef>
+      </attributes>
+      <associatedAttributeNames>
+        <attributeName>PRODUCT_UNIT</attributeName>
+      </associatedAttributeNames>
+      <properties cardinality="CN_N" joinType="inner" joinOperator="Equal"/>
+      <temporalJoinProperties/>
+      <associatedAttributeFeatures/>
+    </logicalJoin>
+  </sharedDimensions>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+    
+  
+    <shape modelObjectName="Sample_Sales" modelObjectNameSpace="StarJoinViewNodeSharedCV" modelObjectType="repository">
+      <upperLeftCorner x="620" y="30"/>
+      <rectangleSize width="183"/>
+    </shape>
+    <shape modelObjectName="Prediction" modelObjectNameSpace="StarJoinViewNodeSharedCV" modelObjectType="repository">
+      <upperLeftCorner x="338" y="30"/>
+      <rectangleSize width="203.96533203125"/>
+    </shape>
+    <shape modelObjectName="PRODUCTS" modelObjectNameSpace="StarJoinViewNodeSharedCV" modelObjectType="repository">
+      <upperLeftCorner x="979" y="41"/>
+      <rectangleSize width="180.123046875"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="EMP" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Projection" cacheInvalidationPeriod="NONE" enforceSqlExecution="true">
+<descriptions defaultDescription="EMP"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="employee1">
+    <resourceUri>employee1</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures/>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1">
+    <viewAttributes>
+      <viewAttribute id="EMPLOYEE_ID"/>
+      <viewAttribute id="FIRST_NAME"/>
+      <viewAttribute id="LAST_NAME"/>
+      <viewAttribute id="EMAIL"/>
+      <viewAttribute id="PHONE_NUMBER"/>
+      <viewAttribute id="HIRE_DATE"/>
+      <viewAttribute id="JOB_ID"/>
+      <viewAttribute id="SALARY"/>
+      <viewAttribute id="COMMISSION_PCT"/>
+      <viewAttribute id="MANAGER_ID"/>
+      <viewAttribute id="DEPARTMENT_ID"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="employee1"/>
+  </calculationView>
+</calculationViews>
+
+<logicalModel id="Projection_1">
+  <attributes>
+    <attribute id="FIRST_NAME" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="FIRST_NAME"/>
+      <keyMapping columnObjectName="Projection_1" columnName="FIRST_NAME"/>
+    </attribute>
+    <attribute id="LAST_NAME" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="LAST_NAME"/>
+      <keyMapping columnObjectName="Projection_1" columnName="LAST_NAME"/>
+    </attribute>
+    <attribute id="EMAIL" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="EMAIL"/>
+      <keyMapping columnObjectName="Projection_1" columnName="EMAIL"/>
+    </attribute>
+    <attribute id="PHONE_NUMBER" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PHONE_NUMBER"/>
+      <keyMapping columnObjectName="Projection_1" columnName="PHONE_NUMBER"/>
+    </attribute>
+    <attribute id="HIRE_DATE" order="6" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="HIRE_DATE"/>
+      <keyMapping columnObjectName="Projection_1" columnName="HIRE_DATE"/>
+    </attribute>
+    <attribute id="JOB_ID" order="7" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="JOB_ID"/>
+      <keyMapping columnObjectName="Projection_1" columnName="JOB_ID"/>
+    </attribute>
+    <attribute id="COMMISSION_PCT" order="9" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="COMMISSION_PCT"/>
+      <keyMapping columnObjectName="Projection_1" columnName="COMMISSION_PCT"/>
+    </attribute>
+  
+    <attribute id="MANAGER_ID" order="10" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="MANAGER_ID"/>
+      <keyMapping columnObjectName="Projection_1" columnName="MANAGER_ID"/>
+    </attribute>
+    <attribute id="DEPARTMENT_ID" order="11" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="DEPARTMENT_ID"/>
+      <keyMapping columnObjectName="Projection_1" columnName="DEPARTMENT_ID"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="EMPLOYEE_ID" order="1" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="EMPLOYEE_ID"/>
+      <measureMapping columnObjectName="Projection_1" columnName="EMPLOYEE_ID"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+    <measure id="SALARY" order="8" aggregationType="min" measureType="simple" engineAggregation="sum">
+      <descriptions defaultDescription="SALARY"/>
+      <measureMapping columnObjectName="Projection_1" columnName="SALARY"/>
+      <exceptionAggregationMetadata/>
+    </measure></baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="120" y="105"/>
+    
+      <rectangleSize width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="120" y="229"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

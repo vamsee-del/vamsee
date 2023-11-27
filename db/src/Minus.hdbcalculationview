@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="Minus" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="true">
+<descriptions defaultDescription="Minus"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="Prediction">
+    <resourceUri>Prediction</resourceUri>
+  </DataSource>
+  <DataSource id="PRODUCTS">
+    <resourceUri>PRODUCTS</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures/>
+<calculationViews>
+  <calculationView xsi:type="Calculation:MinusView" id="Minus_1">
+    <viewAttributes>
+      <viewAttribute id="ORDER_NUMBER"/>
+      <viewAttribute id="QUANTITY_ORDERED" aggregationType="sum"/>
+      <viewAttribute id="PRICE_EACH" aggregationType="sum"/>
+      <viewAttribute id="ORDERLINE_NUMBER" aggregationType="sum"/>
+      <viewAttribute id="SALES" aggregationType="sum"/>
+      <viewAttribute id="ORDER_DATE"/>
+      <viewAttribute id="STATUS1"/>
+      <viewAttribute id="QTR_ID" aggregationType="sum"/>
+      <viewAttribute id="MONTH_ID" aggregationType="sum"/>
+      <viewAttribute id="YEAR_ID" aggregationType="sum"/>
+      <viewAttribute id="PRODUCTLINE"/>
+      <viewAttribute id="MSRP" aggregationType="sum"/>
+      <viewAttribute id="PRODUCT_CODE"/>
+      <viewAttribute id="SALE_ID" aggregationType="sum"/>
+      <viewAttribute id="PRODUCT_ID" aggregationType="sum"/>
+      <viewAttribute id="PRODUCT_UNIT"/>
+      <viewAttribute id="PRODUCT_PRICE" aggregationType="sum"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Prediction">
+      <mapping xsi:type="Calculation:AttributeMapping" target="ORDER_NUMBER" source="ORDER_NUMBER"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="QUANTITY_ORDERED" source="QUANTITY_ORDERED"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PRICE_EACH" source="PRICE_EACH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ORDERLINE_NUMBER" source="ORDERLINE_NUMBER"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SALES" source="SALES"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ORDER_DATE" source="ORDER_DATE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="STATUS1" source="STATUS1"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="QTR_ID" source="QTR_ID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MONTH_ID" source="MONTH_ID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YEAR_ID" source="YEAR_ID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PRODUCTLINE" source="PRODUCTLINE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MSRP" source="MSRP"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PRODUCT_CODE" source="PRODUCT_CODE"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="SALE_ID" null="true" value=""/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="PRODUCT_ID" null="true" value=""/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="PRODUCT_UNIT" null="true" value=""/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="PRODUCT_PRICE" null="true" value=""/>
+    </input>
+    <input node="PRODUCTS">
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="ORDER_NUMBER" null="true" value=""/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="QUANTITY_ORDERED" null="true" value=""/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="PRICE_EACH" null="true" value=""/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="ORDERLINE_NUMBER" null="true" value=""/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="SALES" null="true" value=""/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="ORDER_DATE" null="true" value=""/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="STATUS1" null="true" value=""/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="QTR_ID" null="true" value=""/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="MONTH_ID" null="true" value=""/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="YEAR_ID" null="true" value=""/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="PRODUCTLINE" null="true" value=""/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="MSRP" null="true" value=""/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="PRODUCT_CODE" null="true" value=""/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SALE_ID" source="SALE_ID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PRODUCT_ID" source="PRODUCT_ID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PRODUCT_UNIT" source="PRODUCT_UNIT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PRODUCT_PRICE" source="PRODUCT_PRICE"/>
+    </input>
+  </calculationView>
+</calculationViews>
+
+<logicalModel id="Minus_1">
+  <attributes>
+    <attribute id="ORDER_NUMBER" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ORDER_NUMBER"/>
+      <keyMapping columnObjectName="Minus_1" columnName="ORDER_NUMBER"/>
+    </attribute>
+    <attribute id="ORDER_DATE" order="6" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ORDER_DATE"/>
+      <keyMapping columnObjectName="Minus_1" columnName="ORDER_DATE"/>
+    </attribute>
+    <attribute id="STATUS1" order="7" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="STATUS1"/>
+      <keyMapping columnObjectName="Minus_1" columnName="STATUS1"/>
+    </attribute>
+    <attribute id="PRODUCTLINE" order="11" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PRODUCTLINE"/>
+      <keyMapping columnObjectName="Minus_1" columnName="PRODUCTLINE"/>
+    </attribute>
+    <attribute id="PRODUCT_CODE" order="13" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PRODUCT_CODE"/>
+      <keyMapping columnObjectName="Minus_1" columnName="PRODUCT_CODE"/>
+    </attribute>
+    <attribute id="PRODUCT_UNIT" order="16" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PRODUCT_UNIT"/>
+      <keyMapping columnObjectName="Minus_1" columnName="PRODUCT_UNIT"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="QUANTITY_ORDERED" order="2" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="QUANTITY_ORDERED"/>
+      <measureMapping columnObjectName="Minus_1" columnName="QUANTITY_ORDERED"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+    <measure id="PRICE_EACH" order="3" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="PRICE_EACH"/>
+      <measureMapping columnObjectName="Minus_1" columnName="PRICE_EACH"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+    <measure id="ORDERLINE_NUMBER" order="4" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="ORDERLINE_NUMBER"/>
+      <measureMapping columnObjectName="Minus_1" columnName="ORDERLINE_NUMBER"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+    <measure id="SALES" order="5" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="SALES"/>
+      <measureMapping columnObjectName="Minus_1" columnName="SALES"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+    <measure id="QTR_ID" order="8" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="QTR_ID"/>
+      <measureMapping columnObjectName="Minus_1" columnName="QTR_ID"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+    <measure id="MONTH_ID" order="9" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="MONTH_ID"/>
+      <measureMapping columnObjectName="Minus_1" columnName="MONTH_ID"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+    <measure id="YEAR_ID" order="10" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="YEAR_ID"/>
+      <measureMapping columnObjectName="Minus_1" columnName="YEAR_ID"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+    <measure id="MSRP" order="12" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="MSRP"/>
+      <measureMapping columnObjectName="Minus_1" columnName="MSRP"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+    <measure id="SALE_ID" order="14" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="SALE_ID"/>
+      <measureMapping columnObjectName="Minus_1" columnName="SALE_ID"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+    <measure id="PRODUCT_ID" order="15" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="PRODUCT_ID"/>
+      <measureMapping columnObjectName="Minus_1" columnName="PRODUCT_ID"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+    <measure id="PRODUCT_PRICE" order="17" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="PRODUCT_PRICE"/>
+      <measureMapping columnObjectName="Minus_1" columnName="PRODUCT_PRICE"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+    
+  
+    <shape expanded="true" modelObjectName="Minus_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="91" y="218"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

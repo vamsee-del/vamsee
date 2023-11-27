@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="Proc_in_CV" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="true">
+<descriptions defaultDescription="Proc_in_CV"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="PRODUCTS">
+    <resourceUri>PRODUCTS</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures/>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1">
+    <viewAttributes>
+      <viewAttribute id="SALE_ID"/>
+      <viewAttribute id="PRODUCT_ID"/>
+      <viewAttribute id="PRODUCT_UNIT"/>
+      <viewAttribute id="PRODUCT_PRICE"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="PRODUCTS"/>
+  </calculationView>
+</calculationViews>
+
+<logicalModel id="Projection_1">
+  <attributes>
+    <attribute id="PRODUCT_UNIT" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PRODUCT_UNIT"/>
+      <keyMapping columnObjectName="Projection_1" columnName="PRODUCT_UNIT"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="SALE_ID" order="1" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="SALE_ID"/>
+      <measureMapping columnObjectName="Projection_1" columnName="SALE_ID"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+    <measure id="PRODUCT_ID" order="2" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="PRODUCT_ID"/>
+      <measureMapping columnObjectName="Projection_1" columnName="PRODUCT_ID"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+    <measure id="PRODUCT_PRICE" order="4" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="PRODUCT_PRICE"/>
+      <measureMapping columnObjectName="Projection_1" columnName="PRODUCT_PRICE"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+    
+  
+    <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="100" y="227"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

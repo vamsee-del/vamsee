@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="CV_EMP1" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="true">
+<descriptions defaultDescription="CV_EMP1"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="Prediction">
+    <resourceUri>Prediction</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures/>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1">
+    <viewAttributes>
+      <viewAttribute id="ORDER_NUMBER"/>
+      <viewAttribute id="QUANTITY_ORDERED"/>
+      <viewAttribute id="PRICE_EACH"/>
+      <viewAttribute id="ORDERLINE_NUMBER"/>
+      <viewAttribute id="SALES"/>
+      <viewAttribute id="ORDER_DATE"/>
+      <viewAttribute id="STATUS1"/>
+      <viewAttribute id="QTR_ID"/>
+      <viewAttribute id="MONTH_ID"/>
+      <viewAttribute id="YEAR_ID"/>
+      <viewAttribute id="PRODUCTLINE"/>
+      <viewAttribute id="MSRP"/>
+      <viewAttribute id="PRODUCT_CODE"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Prediction"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:RankView" id="Rank_1">
+    <descriptions>
+      <comment text=""/>
+    </descriptions>
+    <viewAttributes>
+      <viewAttribute id="ORDER_NUMBER"/>
+      <viewAttribute id="QUANTITY_ORDERED" aggregationType="sum"/>
+      <viewAttribute id="PRICE_EACH" aggregationType="sum"/>
+      <viewAttribute id="ORDERLINE_NUMBER" aggregationType="sum"/>
+      <viewAttribute id="SALES" aggregationType="sum"/>
+      <viewAttribute id="ORDER_DATE"/>
+      <viewAttribute id="STATUS1"/>
+      <viewAttribute id="QTR_ID" aggregationType="sum"/>
+      <viewAttribute id="MONTH_ID" aggregationType="sum"/>
+      <viewAttribute id="YEAR_ID" aggregationType="sum"/>
+      <viewAttribute id="PRODUCTLINE"/>
+      <viewAttribute id="MSRP" aggregationType="sum"/>
+      <viewAttribute id="PRODUCT_CODE"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Projection_1"/>
+    <rankingFilter type="RANK" offset="0" offsetReference="FRONT" dynamicPartitionAttributes="false">
+      <order byViewAttributeName="MSRP" direction="DESC"/>
+      <order byViewAttributeName="MONTH_ID" direction="DESC"/>
+      <rankThreshold>
+        <value>1</value>
+      </rankThreshold>
+      <rankViewAttributeName>Rank_Column</rankViewAttributeName>
+    </rankingFilter>
+  </calculationView>
+</calculationViews>
+
+<logicalModel id="Rank_1">
+  <attributes>
+    <attribute id="ORDER_NUMBER" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ORDER_NUMBER"/>
+      <keyMapping columnObjectName="Rank_1" columnName="ORDER_NUMBER"/>
+    </attribute>
+    <attribute id="ORDER_DATE" order="6" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ORDER_DATE"/>
+      <keyMapping columnObjectName="Rank_1" columnName="ORDER_DATE"/>
+    </attribute>
+    <attribute id="STATUS1" order="7" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="STATUS1"/>
+      <keyMapping columnObjectName="Rank_1" columnName="STATUS1"/>
+    </attribute>
+    <attribute id="PRODUCTLINE" order="11" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PRODUCTLINE"/>
+      <keyMapping columnObjectName="Rank_1" columnName="PRODUCTLINE"/>
+    </attribute>
+    <attribute id="PRODUCT_CODE" order="13" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PRODUCT_CODE"/>
+      <keyMapping columnObjectName="Rank_1" columnName="PRODUCT_CODE"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="QUANTITY_ORDERED" order="2" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="QUANTITY_ORDERED"/>
+      <measureMapping columnObjectName="Rank_1" columnName="QUANTITY_ORDERED"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+    <measure id="PRICE_EACH" order="3" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="PRICE_EACH"/>
+      <measureMapping columnObjectName="Rank_1" columnName="PRICE_EACH"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+    <measure id="ORDERLINE_NUMBER" order="4" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="ORDERLINE_NUMBER"/>
+      <measureMapping columnObjectName="Rank_1" columnName="ORDERLINE_NUMBER"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+    <measure id="SALES" order="5" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="SALES"/>
+      <measureMapping columnObjectName="Rank_1" columnName="SALES"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+    <measure id="QTR_ID" order="8" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="QTR_ID"/>
+      <measureMapping columnObjectName="Rank_1" columnName="QTR_ID"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+    <measure id="MONTH_ID" order="9" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="MONTH_ID"/>
+      <measureMapping columnObjectName="Rank_1" columnName="MONTH_ID"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+    <measure id="YEAR_ID" order="10" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="YEAR_ID"/>
+      <measureMapping columnObjectName="Rank_1" columnName="YEAR_ID"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+    <measure id="MSRP" order="12" aggregationType="max" measureType="simple" engineAggregation="sum">
+      <descriptions defaultDescription="MSRP"/>
+      <measureMapping columnObjectName="Rank_1" columnName="MSRP"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+  
+    <measure id="Rank_Column" order="14" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="Rank_Column"/>
+      <measureMapping columnObjectName="Rank_1" columnName="Rank_Column"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+    
+  
+    <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="100" y="336"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="Rank_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="100" y="190"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

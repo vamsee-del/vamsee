@@ -1,0 +1,56 @@
+{
+  "<UPS>": {
+    "object_owner": {
+      "system_privileges": [
+        {
+          "privileges": [ "SYSTEM PRIVILEGE 1", "SYSTEM PRIVILEGE 2" ],
+          "privileges_with_admin_option": [ "SYSTEM PRIVILEGE 3", "SYSTEM PRIVILEGE 4" ]
+        }
+      ],
+      "global_roles" : [
+        {
+          "roles" : [ "GLOBAL_ROLE_1", "GLOBAL_ROLE_2" ],
+          "roles_with_admin_option" : [ "GLOBAL_ROLE_3", "GLOBAL_ROLE_4" ]
+        }
+      ],
+      "schema_privileges" : [
+        {
+          "schema" : "<schema_name>",   // optional; override schema defined in grantor service
+          "privileges" : [ "INSERT", "UPDATE" ],
+          "privileges_with_grant_option" : [ "SELECT" ]
+        }
+      ],
+      "schema_roles" : [
+        {
+          "schema" : "<schema_name>",   // optional; override schema defined in grantor service
+          "roles" : [ "SCHEMA_ROLE_1", "SCHEMA_ROLE_2" ],
+          "roles_with_admin_option" : [ "SCHEMA_ROLE_3", "SCHEMA_ROLE_4" ]
+        }
+      ],
+      "object_privileges" : [
+        {
+          "schema" : "<schema_name>",   // optional; override schema defined in grantor service
+          "name": "AN_OBJECT",
+          "privileges": [ "INSERT", "UPDATE" ],
+          "privileges_with_grant_option" : [ "SELECT" ]
+        }
+      ],
+      "global_object_privileges" : [
+        {
+          "name" : "A_REMOTE_SOURCE",
+          "type" : "REMOTE SOURCE",
+          "privileges" : [ "CREATE VIRTUAL TABLE" ],
+          "privileges_with_grant_option" : [ "CREATE VIRTUAL PROCEDURE" ]
+        }
+      ]
+    },
+    "application_user": {
+      "system_privileges": […],
+      "global_roles": [...],
+      "schema_privileges": [...],
+      "schema_roles": [...],
+      "object_privileges": [...],
+      "global_object_privileges": [...]
+    }
+  }
+}

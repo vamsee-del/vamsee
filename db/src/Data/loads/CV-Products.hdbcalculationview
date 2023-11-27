@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="CV-Products" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="true">
+<descriptions defaultDescription="CV-Products"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="employee1">
+    <resourceUri>employee1</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures/>
+<calculationViews>
+  <calculationView xsi:type="Calculation:RankView" id="Rank_1">
+    <viewAttributes>
+      <viewAttribute id="EMPLOYEE_ID" aggregationType="sum"/>
+      <viewAttribute id="FIRST_NAME"/>
+      <viewAttribute id="LAST_NAME"/>
+      <viewAttribute id="EMAIL"/>
+      <viewAttribute id="PHONE_NUMBER"/>
+      <viewAttribute id="HIRE_DATE"/>
+      <viewAttribute id="JOB_ID"/>
+      <viewAttribute id="SALARY" aggregationType="sum"/>
+      <viewAttribute id="COMMISSION_PCT"/>
+      <viewAttribute id="MANAGER_ID" aggregationType="sum"/>
+      <viewAttribute id="DEPARTMENT_ID" aggregationType="sum"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="employee1"/>
+    <rankingFilter type="RANK" offset="0" offsetReference="BACK" dynamicPartitionAttributes="false">
+      <rankThreshold/>
+      <rankViewAttributeName>Rank_Column</rankViewAttributeName>
+    </rankingFilter>
+  </calculationView>
+  <calculationView xsi:type="Calculation:IntersectView" id="Intersect_1">
+    <viewAttributes>
+      <viewAttribute id="EMPLOYEE_ID" aggregationType="sum"/>
+      <viewAttribute id="FIRST_NAME"/>
+      <viewAttribute id="LAST_NAME"/>
+      <viewAttribute id="EMAIL"/>
+      <viewAttribute id="PHONE_NUMBER"/>
+      <viewAttribute id="HIRE_DATE"/>
+      <viewAttribute id="JOB_ID"/>
+      <viewAttribute id="SALARY" aggregationType="sum"/>
+      <viewAttribute id="COMMISSION_PCT"/>
+      <viewAttribute id="MANAGER_ID" aggregationType="sum"/>
+      <viewAttribute id="DEPARTMENT_ID" aggregationType="sum"/>
+      <viewAttribute id="Rank_Column" aggregationType="sum"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Rank_1">
+      <mapping xsi:type="Calculation:AttributeMapping" target="EMPLOYEE_ID" source="EMPLOYEE_ID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="FIRST_NAME" source="FIRST_NAME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="LAST_NAME" source="LAST_NAME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="EMAIL" source="EMAIL"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PHONE_NUMBER" source="PHONE_NUMBER"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="HIRE_DATE" source="HIRE_DATE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOB_ID" source="JOB_ID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SALARY" source="SALARY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="COMMISSION_PCT" source="COMMISSION_PCT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MANAGER_ID" source="MANAGER_ID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DEPARTMENT_ID" source="DEPARTMENT_ID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Rank_Column" source="Rank_Column"/>
+    </input>
+  </calculationView>
+</calculationViews>
+
+<logicalModel id="Intersect_1">
+  <attributes>
+    <attribute id="FIRST_NAME" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="FIRST_NAME"/>
+      <keyMapping columnObjectName="Intersect_1" columnName="FIRST_NAME"/>
+    </attribute>
+    <attribute id="LAST_NAME" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="LAST_NAME"/>
+      <keyMapping columnObjectName="Intersect_1" columnName="LAST_NAME"/>
+    </attribute>
+    <attribute id="EMAIL" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="EMAIL"/>
+      <keyMapping columnObjectName="Intersect_1" columnName="EMAIL"/>
+    </attribute>
+    <attribute id="PHONE_NUMBER" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PHONE_NUMBER"/>
+      <keyMapping columnObjectName="Intersect_1" columnName="PHONE_NUMBER"/>
+    </attribute>
+    <attribute id="HIRE_DATE" order="6" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="HIRE_DATE"/>
+      <keyMapping columnObjectName="Intersect_1" columnName="HIRE_DATE"/>
+    </attribute>
+    <attribute id="JOB_ID" order="7" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="JOB_ID"/>
+      <keyMapping columnObjectName="Intersect_1" columnName="JOB_ID"/>
+    </attribute>
+    <attribute id="COMMISSION_PCT" order="9" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="COMMISSION_PCT"/>
+      <keyMapping columnObjectName="Intersect_1" columnName="COMMISSION_PCT"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="EMPLOYEE_ID" order="1" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="EMPLOYEE_ID"/>
+      <measureMapping columnObjectName="Intersect_1" columnName="EMPLOYEE_ID"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+    <measure id="SALARY" order="8" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="SALARY"/>
+      <measureMapping columnObjectName="Intersect_1" columnName="SALARY"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+    <measure id="MANAGER_ID" order="10" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="MANAGER_ID"/>
+      <measureMapping columnObjectName="Intersect_1" columnName="MANAGER_ID"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+    <measure id="DEPARTMENT_ID" order="11" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="DEPARTMENT_ID"/>
+      <measureMapping columnObjectName="Intersect_1" columnName="DEPARTMENT_ID"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+    <measure id="Rank_Column" order="12" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="Rank_Column"/>
+      <measureMapping columnObjectName="Intersect_1" columnName="Rank_Column"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="92" y="105"/>
+    
+      <rectangleSize width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Rank_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="92" y="400"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Intersect_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="92" y="229"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

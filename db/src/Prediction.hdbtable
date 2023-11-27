@@ -1,0 +1,1 @@
+COLUMN TABLE "Prediction" (order_number nvarchar(200),quantity_ordered int,Price_each dec(30,3),orderline_number int,Sales dec(30,4),order_date nvarchar(200),status1 varchar(200),QTR_id int,month_id int,year_id int,productline nvarchar(200),MSRP int,Product_code nvarchar(200))

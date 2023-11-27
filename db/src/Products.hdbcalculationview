@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="Products" applyPrivilegeType="SQL_ANALYTIC_PRIVILEGE" dataCategory="CUBE" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="true" propagateInstantiation="true">
+<descriptions defaultDescription="Products"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="PRODUCTS">
+    <resourceUri>PRODUCTS</resourceUri>
+  </DataSource>
+  <DataSource id="Prediction">
+    <resourceUri>Prediction</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures/>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1">
+    <viewAttributes>
+      <viewAttribute id="SALE_ID"/>
+      <viewAttribute id="PRODUCT_ID"/>
+      <viewAttribute id="PRODUCT_UNIT"/>
+      <viewAttribute id="PRODUCT_PRICE"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="PRODUCTS"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_2">
+    <viewAttributes>
+      <viewAttribute id="ORDER_NUMBER"/>
+      <viewAttribute id="QUANTITY_ORDERED"/>
+      <viewAttribute id="PRICE_EACH"/>
+      <viewAttribute id="ORDERLINE_NUMBER"/>
+      <viewAttribute id="SALES"/>
+      <viewAttribute id="ORDER_DATE"/>
+      <viewAttribute id="STATUS1"/>
+      <viewAttribute id="QTR_ID"/>
+      <viewAttribute id="MONTH_ID"/>
+      <viewAttribute id="YEAR_ID"/>
+      <viewAttribute id="PRODUCTLINE"/>
+      <viewAttribute id="MSRP"/>
+      <viewAttribute id="PRODUCT_CODE"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Prediction"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:NonEquiJoinView" id="NonEquiJoin_1" cardinality="CN_N" joinType="inner" ignoreMultipleOutputsForFilter="true">
+    <viewAttributes>
+      <viewAttribute id="SALE_ID" aggregationType="sum"/>
+      <viewAttribute id="PRODUCT_ID" aggregationType="sum"/>
+      <viewAttribute id="PRODUCT_UNIT"/>
+      <viewAttribute id="PRODUCT_PRICE" aggregationType="sum"/>
+      <viewAttribute id="ORDER_NUMBER"/>
+      <viewAttribute id="QUANTITY_ORDERED" aggregationType="sum"/>
+      <viewAttribute id="PRICE_EACH" aggregationType="sum"/>
+      <viewAttribute id="ORDERLINE_NUMBER" aggregationType="sum"/>
+      <viewAttribute id="SALES" aggregationType="sum"/>
+      <viewAttribute id="ORDER_DATE"/>
+      <viewAttribute id="STATUS1"/>
+      <viewAttribute id="QTR_ID" aggregationType="sum"/>
+      <viewAttribute id="MONTH_ID" aggregationType="sum"/>
+      <viewAttribute id="YEAR_ID" aggregationType="sum"/>
+      <viewAttribute id="PRODUCTLINE"/>
+      <viewAttribute id="MSRP" aggregationType="sum"/>
+      <viewAttribute id="PRODUCT_CODE"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Projection_1">
+      <mapping xsi:type="Calculation:AttributeMapping" target="SALE_ID" source="SALE_ID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PRODUCT_ID" source="PRODUCT_ID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PRODUCT_UNIT" source="PRODUCT_UNIT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PRODUCT_PRICE" source="PRODUCT_PRICE"/>
+    </input>
+    <input node="Projection_2">
+      <mapping xsi:type="Calculation:AttributeMapping" target="ORDER_NUMBER" source="ORDER_NUMBER"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="QUANTITY_ORDERED" source="QUANTITY_ORDERED"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PRICE_EACH" source="PRICE_EACH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ORDERLINE_NUMBER" source="ORDERLINE_NUMBER"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SALES" source="SALES"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ORDER_DATE" source="ORDER_DATE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="STATUS1" source="STATUS1"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="QTR_ID" source="QTR_ID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MONTH_ID" source="MONTH_ID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YEAR_ID" source="YEAR_ID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PRODUCTLINE" source="PRODUCTLINE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MSRP" source="MSRP"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PRODUCT_CODE" source="PRODUCT_CODE"/>
+    </input>
+    <joinAttribute leftColumn="PRODUCT_PRICE" rightColumn="PRICE_EACH" operator="NE"/>
+  </calculationView>
+</calculationViews>
+
+<logicalModel id="NonEquiJoin_1">
+  <attributes>
+    <attribute id="PRODUCT_UNIT" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PRODUCT_UNIT"/>
+      <keyMapping columnObjectName="NonEquiJoin_1" columnName="PRODUCT_UNIT"/>
+    </attribute>
+    <attribute id="ORDER_NUMBER" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ORDER_NUMBER"/>
+      <keyMapping columnObjectName="NonEquiJoin_1" columnName="ORDER_NUMBER"/>
+    </attribute>
+    <attribute id="ORDER_DATE" order="10" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ORDER_DATE"/>
+      <keyMapping columnObjectName="NonEquiJoin_1" columnName="ORDER_DATE"/>
+    </attribute>
+    <attribute id="STATUS1" order="11" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="STATUS1"/>
+      <keyMapping columnObjectName="NonEquiJoin_1" columnName="STATUS1"/>
+    </attribute>
+    <attribute id="PRODUCTLINE" order="15" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PRODUCTLINE"/>
+      <keyMapping columnObjectName="NonEquiJoin_1" columnName="PRODUCTLINE"/>
+    </attribute>
+    <attribute id="PRODUCT_CODE" order="17" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PRODUCT_CODE"/>
+      <keyMapping columnObjectName="NonEquiJoin_1" columnName="PRODUCT_CODE"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="SALE_ID" order="1" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="SALE_ID"/>
+      <measureMapping columnObjectName="NonEquiJoin_1" columnName="SALE_ID"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+    <measure id="PRODUCT_ID" order="2" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="PRODUCT_ID"/>
+      <measureMapping columnObjectName="NonEquiJoin_1" columnName="PRODUCT_ID"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+    <measure id="PRODUCT_PRICE" order="4" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="PRODUCT_PRICE"/>
+      <measureMapping columnObjectName="NonEquiJoin_1" columnName="PRODUCT_PRICE"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+    <measure id="QUANTITY_ORDERED" order="6" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="QUANTITY_ORDERED"/>
+      <measureMapping columnObjectName="NonEquiJoin_1" columnName="QUANTITY_ORDERED"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+    <measure id="PRICE_EACH" order="7" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="PRICE_EACH"/>
+      <measureMapping columnObjectName="NonEquiJoin_1" columnName="PRICE_EACH"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+    <measure id="ORDERLINE_NUMBER" order="8" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="ORDERLINE_NUMBER"/>
+      <measureMapping columnObjectName="NonEquiJoin_1" columnName="ORDERLINE_NUMBER"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+    <measure id="SALES" order="9" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="SALES"/>
+      <measureMapping columnObjectName="NonEquiJoin_1" columnName="SALES"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+    <measure id="QTR_ID" order="12" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="QTR_ID"/>
+      <measureMapping columnObjectName="NonEquiJoin_1" columnName="QTR_ID"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+    <measure id="MONTH_ID" order="13" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="MONTH_ID"/>
+      <measureMapping columnObjectName="NonEquiJoin_1" columnName="MONTH_ID"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+    <measure id="YEAR_ID" order="14" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="YEAR_ID"/>
+      <measureMapping columnObjectName="NonEquiJoin_1" columnName="YEAR_ID"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+    <measure id="MSRP" order="16" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="MSRP"/>
+      <measureMapping columnObjectName="NonEquiJoin_1" columnName="MSRP"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+    
+  
+    <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="-150" y="367"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Projection_2" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="307" y="367"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="NonEquiJoin_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="100" y="198"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="Projection_1" modelObjectNameSpace="NonEquiJoin_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="180"/>
+    </shape>
+    <shape modelObjectName="Projection_2" modelObjectNameSpace="NonEquiJoin_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="203"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

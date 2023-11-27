@@ -1,0 +1,378 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:AccessControl="http://www.sap.com/ndb/SQLCoreModelAccessControl.ecore" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" xmlns:Privilege="http://www.sap.com/ndb/BiModelPrivilege.ecore" id="Sales_cv" applyPrivilegeType="SQL_ANALYTIC_PRIVILEGE" dataCategory="CUBE" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="true">
+<descriptions defaultDescription="Sales_cv"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="Prediction">
+    <resourceUri>Prediction</resourceUri>
+  </DataSource>
+  <DataSource id="Sample_Sales">
+    <resourceUri>Sample_Sales</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures/>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1">
+    <viewAttributes>
+      <viewAttribute id="ORDER_NUMBER"/>
+      <viewAttribute id="QUANTITY_ORDERED"/>
+      <viewAttribute id="PRICE_EACH"/>
+      <viewAttribute id="ORDERLINE_NUMBER"/>
+      <viewAttribute id="SALES"/>
+      <viewAttribute id="ORDER_DATE"/>
+      <viewAttribute id="STATUS1"/>
+      <viewAttribute id="QTR_ID"/>
+      <viewAttribute id="MONTH_ID"/>
+      <viewAttribute id="YEAR_ID"/>
+      <viewAttribute id="PRODUCTLINE"/>
+      <viewAttribute id="MSRP"/>
+      <viewAttribute id="PRODUCT_CODE"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Prediction"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_2">
+    <viewAttributes>
+      <viewAttribute id="REGION"/>
+      <viewAttribute id="COUNTRY"/>
+      <viewAttribute id="ITEM_TYPE"/>
+      <viewAttribute id="SALES_CHANNEL"/>
+      <viewAttribute id="ORDER_PRIORITY"/>
+      <viewAttribute id="ORDER_DATE"/>
+      <viewAttribute id="ORDER_ID"/>
+      <viewAttribute id="SHIP_DATE"/>
+      <viewAttribute id="UNITS_SOLD"/>
+      <viewAttribute id="UNIT_PRICE"/>
+      <viewAttribute id="UNIT_COST"/>
+      <viewAttribute id="TOTAL_REVENUE"/>
+      <viewAttribute id="TOTAL_COST"/>
+      <viewAttribute id="TOTAL_PROFIT"/>
+      <viewAttribute id="ORDER_NUMBER"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Sample_Sales"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_1" cardinality="CN_N" joinType="inner">
+    <viewAttributes>
+      <viewAttribute id="ORDER_NUMBER"/>
+      <viewAttribute id="QUANTITY_ORDERED" aggregationType="sum"/>
+      <viewAttribute id="PRICE_EACH" aggregationType="sum"/>
+      <viewAttribute id="ORDERLINE_NUMBER" aggregationType="sum"/>
+      <viewAttribute id="SALES" aggregationType="sum"/>
+      <viewAttribute id="ORDER_DATE"/>
+      <viewAttribute id="STATUS1"/>
+      <viewAttribute id="QTR_ID" aggregationType="sum"/>
+      <viewAttribute id="MONTH_ID" aggregationType="sum"/>
+      <viewAttribute id="YEAR_ID" aggregationType="sum"/>
+      <viewAttribute id="PRODUCTLINE"/>
+      <viewAttribute id="MSRP" aggregationType="sum"/>
+      <viewAttribute id="PRODUCT_CODE"/>
+      <viewAttribute id="REGION"/>
+      <viewAttribute id="COUNTRY"/>
+      <viewAttribute id="ITEM_TYPE"/>
+      <viewAttribute id="SALES_CHANNEL"/>
+      <viewAttribute id="ORDER_PRIORITY"/>
+      <viewAttribute id="ORDER_DATE_1"/>
+      <viewAttribute id="ORDER_ID"/>
+      <viewAttribute id="SHIP_DATE"/>
+      <viewAttribute id="UNITS_SOLD" aggregationType="sum"/>
+      <viewAttribute id="UNIT_PRICE" aggregationType="sum"/>
+      <viewAttribute id="UNIT_COST" aggregationType="sum"/>
+      <viewAttribute id="TOTAL_REVENUE"/>
+      <viewAttribute id="TOTAL_COST"/>
+      <viewAttribute id="TOTAL_PROFIT"/>
+      <viewAttribute id="ORDER_NUMBER_1"/>
+      <viewAttribute hidden="true" id="JOIN$ORDER_NUMBER$ORDER_NUMBER"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Projection_1">
+      <mapping xsi:type="Calculation:AttributeMapping" target="ORDER_NUMBER" source="ORDER_NUMBER"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="QUANTITY_ORDERED" source="QUANTITY_ORDERED"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PRICE_EACH" source="PRICE_EACH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ORDERLINE_NUMBER" source="ORDERLINE_NUMBER"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SALES" source="SALES"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ORDER_DATE" source="ORDER_DATE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="STATUS1" source="STATUS1"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="QTR_ID" source="QTR_ID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MONTH_ID" source="MONTH_ID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YEAR_ID" source="YEAR_ID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PRODUCTLINE" source="PRODUCTLINE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MSRP" source="MSRP"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PRODUCT_CODE" source="PRODUCT_CODE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$ORDER_NUMBER$ORDER_NUMBER" source="ORDER_NUMBER"/>
+    </input>
+    <input node="Projection_2">
+      <mapping xsi:type="Calculation:AttributeMapping" target="REGION" source="REGION"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="COUNTRY" source="COUNTRY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ITEM_TYPE" source="ITEM_TYPE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SALES_CHANNEL" source="SALES_CHANNEL"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ORDER_PRIORITY" source="ORDER_PRIORITY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ORDER_DATE_1" source="ORDER_DATE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ORDER_ID" source="ORDER_ID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SHIP_DATE" source="SHIP_DATE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="UNITS_SOLD" source="UNITS_SOLD"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="UNIT_PRICE" source="UNIT_PRICE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="UNIT_COST" source="UNIT_COST"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TOTAL_REVENUE" source="TOTAL_REVENUE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TOTAL_COST" source="TOTAL_COST"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TOTAL_PROFIT" source="TOTAL_PROFIT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ORDER_NUMBER_1" source="ORDER_NUMBER"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$ORDER_NUMBER$ORDER_NUMBER" source="ORDER_NUMBER"/>
+    </input>
+    <joinAttribute name="JOIN$ORDER_NUMBER$ORDER_NUMBER"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:WindowFunctionView" id="WindowFunction_1">
+    <viewAttributes>
+      <viewAttribute id="ORDER_NUMBER"/>
+      <viewAttribute id="QUANTITY_ORDERED" aggregationType="sum"/>
+      <viewAttribute id="PRICE_EACH" aggregationType="sum"/>
+      <viewAttribute id="ORDERLINE_NUMBER" aggregationType="sum"/>
+      <viewAttribute id="SALES" aggregationType="sum"/>
+      <viewAttribute id="ORDER_DATE"/>
+      <viewAttribute id="STATUS1"/>
+      <viewAttribute id="QTR_ID" aggregationType="sum"/>
+      <viewAttribute id="MONTH_ID" aggregationType="sum"/>
+      <viewAttribute id="YEAR_ID" aggregationType="sum"/>
+      <viewAttribute id="PRODUCTLINE"/>
+      <viewAttribute id="MSRP" aggregationType="sum"/>
+      <viewAttribute id="PRODUCT_CODE"/>
+      <viewAttribute id="REGION"/>
+      <viewAttribute id="COUNTRY"/>
+      <viewAttribute id="ITEM_TYPE"/>
+      <viewAttribute id="SALES_CHANNEL"/>
+      <viewAttribute id="ORDER_PRIORITY"/>
+      <viewAttribute id="ORDER_DATE_1"/>
+      <viewAttribute id="ORDER_ID"/>
+      <viewAttribute id="SHIP_DATE"/>
+      <viewAttribute id="UNITS_SOLD" aggregationType="sum"/>
+      <viewAttribute id="UNIT_PRICE" aggregationType="sum"/>
+      <viewAttribute id="UNIT_COST" aggregationType="sum"/>
+      <viewAttribute id="TOTAL_REVENUE"/>
+      <viewAttribute id="TOTAL_COST"/>
+      <viewAttribute id="TOTAL_PROFIT"/>
+      <viewAttribute id="ORDER_NUMBER_1"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Join_1">
+      <mapping xsi:type="Calculation:AttributeMapping" target="ORDER_NUMBER" source="ORDER_NUMBER"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="QUANTITY_ORDERED" source="QUANTITY_ORDERED"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PRICE_EACH" source="PRICE_EACH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ORDERLINE_NUMBER" source="ORDERLINE_NUMBER"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SALES" source="SALES"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ORDER_DATE" source="ORDER_DATE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="STATUS1" source="STATUS1"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="QTR_ID" source="QTR_ID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MONTH_ID" source="MONTH_ID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YEAR_ID" source="YEAR_ID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PRODUCTLINE" source="PRODUCTLINE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MSRP" source="MSRP"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PRODUCT_CODE" source="PRODUCT_CODE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="REGION" source="REGION"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="COUNTRY" source="COUNTRY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ITEM_TYPE" source="ITEM_TYPE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SALES_CHANNEL" source="SALES_CHANNEL"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ORDER_PRIORITY" source="ORDER_PRIORITY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ORDER_DATE_1" source="ORDER_DATE_1"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ORDER_ID" source="ORDER_ID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SHIP_DATE" source="SHIP_DATE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="UNITS_SOLD" source="UNITS_SOLD"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="UNIT_PRICE" source="UNIT_PRICE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="UNIT_COST" source="UNIT_COST"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TOTAL_REVENUE" source="TOTAL_REVENUE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TOTAL_COST" source="TOTAL_COST"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TOTAL_PROFIT" source="TOTAL_PROFIT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ORDER_NUMBER_1" source="ORDER_NUMBER_1"/>
+    </input>
+    <function name="DENSE_RANK"/>
+    <windowFunctionResultColumn datatype="DOUBLE">Rank</windowFunctionResultColumn>
+    <orderAttributes>
+      <orderAttribute direction="DESC">UNITS_SOLD</orderAttribute>
+      <orderAttribute direction="DESC">MSRP</orderAttribute>
+    </orderAttributes>
+    <partitionAttributes/>
+  </calculationView>
+</calculationViews>
+
+<logicalModel id="WindowFunction_1">
+  <attributes>
+    <attribute id="ORDER_NUMBER" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ORDER_NUMBER"/>
+      <keyMapping columnObjectName="WindowFunction_1" columnName="ORDER_NUMBER"/>
+    </attribute>
+    <attribute id="QUANTITY_ORDERED" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="QUANTITY_ORDERED"/>
+      <keyMapping columnObjectName="WindowFunction_1" columnName="QUANTITY_ORDERED"/>
+    </attribute>
+    <attribute id="PRICE_EACH" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PRICE_EACH"/>
+      <keyMapping columnObjectName="WindowFunction_1" columnName="PRICE_EACH"/>
+    </attribute>
+    <attribute id="ORDERLINE_NUMBER" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ORDERLINE_NUMBER"/>
+      <keyMapping columnObjectName="WindowFunction_1" columnName="ORDERLINE_NUMBER"/>
+    </attribute>
+    <attribute id="SALES" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="SALES"/>
+      <keyMapping columnObjectName="WindowFunction_1" columnName="SALES"/>
+    </attribute>
+    <attribute id="ORDER_DATE" order="6" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ORDER_DATE"/>
+      <keyMapping columnObjectName="WindowFunction_1" columnName="ORDER_DATE"/>
+    </attribute>
+    <attribute id="STATUS1" order="7" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="STATUS1"/>
+      <keyMapping columnObjectName="WindowFunction_1" columnName="STATUS1"/>
+    </attribute>
+    <attribute id="QTR_ID" order="8" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="QTR_ID"/>
+      <keyMapping columnObjectName="WindowFunction_1" columnName="QTR_ID"/>
+    </attribute>
+    <attribute id="MONTH_ID" order="9" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="MONTH_ID"/>
+      <keyMapping columnObjectName="WindowFunction_1" columnName="MONTH_ID"/>
+    </attribute>
+    <attribute id="YEAR_ID" order="10" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="YEAR_ID"/>
+      <keyMapping columnObjectName="WindowFunction_1" columnName="YEAR_ID"/>
+    </attribute>
+    <attribute id="PRODUCTLINE" order="11" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PRODUCTLINE"/>
+      <keyMapping columnObjectName="WindowFunction_1" columnName="PRODUCTLINE"/>
+    </attribute>
+    <attribute id="MSRP" order="12" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="MSRP"/>
+      <keyMapping columnObjectName="WindowFunction_1" columnName="MSRP"/>
+    </attribute>
+    <attribute id="PRODUCT_CODE" order="13" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PRODUCT_CODE"/>
+      <keyMapping columnObjectName="WindowFunction_1" columnName="PRODUCT_CODE"/>
+    </attribute>
+    <attribute id="REGION" order="14" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="REGION"/>
+      <keyMapping columnObjectName="WindowFunction_1" columnName="REGION"/>
+    </attribute>
+    <attribute id="COUNTRY" order="15" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="COUNTRY"/>
+      <keyMapping columnObjectName="WindowFunction_1" columnName="COUNTRY"/>
+    </attribute>
+    <attribute id="ITEM_TYPE" order="16" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ITEM_TYPE"/>
+      <keyMapping columnObjectName="WindowFunction_1" columnName="ITEM_TYPE"/>
+    </attribute>
+    <attribute id="SALES_CHANNEL" order="17" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="SALES_CHANNEL"/>
+      <keyMapping columnObjectName="WindowFunction_1" columnName="SALES_CHANNEL"/>
+    </attribute>
+    <attribute id="ORDER_PRIORITY" order="18" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ORDER_PRIORITY"/>
+      <keyMapping columnObjectName="WindowFunction_1" columnName="ORDER_PRIORITY"/>
+    </attribute>
+    <attribute id="ORDER_DATE_1" order="19" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ORDER_DATE_1"/>
+      <keyMapping columnObjectName="WindowFunction_1" columnName="ORDER_DATE_1"/>
+    </attribute>
+    <attribute id="ORDER_ID" order="20" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ORDER_ID"/>
+      <keyMapping columnObjectName="WindowFunction_1" columnName="ORDER_ID"/>
+    </attribute>
+    <attribute id="SHIP_DATE" order="21" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="SHIP_DATE"/>
+      <keyMapping columnObjectName="WindowFunction_1" columnName="SHIP_DATE"/>
+    </attribute>
+    <attribute id="UNITS_SOLD" order="22" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="UNITS_SOLD"/>
+      <keyMapping columnObjectName="WindowFunction_1" columnName="UNITS_SOLD"/>
+    </attribute>
+    <attribute id="UNIT_PRICE" order="23" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="UNIT_PRICE"/>
+      <keyMapping columnObjectName="WindowFunction_1" columnName="UNIT_PRICE"/>
+    </attribute>
+    <attribute id="UNIT_COST" order="24" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="UNIT_COST"/>
+      <keyMapping columnObjectName="WindowFunction_1" columnName="UNIT_COST"/>
+    </attribute>
+    <attribute id="TOTAL_REVENUE" order="25" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="TOTAL_REVENUE"/>
+      <keyMapping columnObjectName="WindowFunction_1" columnName="TOTAL_REVENUE"/>
+    </attribute>
+    <attribute id="TOTAL_COST" order="26" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="TOTAL_COST"/>
+      <keyMapping columnObjectName="WindowFunction_1" columnName="TOTAL_COST"/>
+    </attribute>
+    <attribute id="TOTAL_PROFIT" order="27" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="TOTAL_PROFIT"/>
+      <keyMapping columnObjectName="WindowFunction_1" columnName="TOTAL_PROFIT"/>
+    </attribute>
+    <attribute id="ORDER_NUMBER_1" order="28" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ORDER_NUMBER_1"/>
+      <keyMapping columnObjectName="WindowFunction_1" columnName="ORDER_NUMBER_1"/>
+    </attribute>
+  
+    <attribute id="Rank" order="29" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Rank"/>
+      <keyMapping columnObjectName="WindowFunction_1" columnName="Rank"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures/>
+  <calculatedMeasures/>
+  <restrictedMeasures>
+    <measure id="RESTRICTED_COL" hidden="false" order="30" aggregationType="sum" datatype="DECIMAL" length="30" scale="3" baseMeasure="UNIT_PRICE" restrictionExpressionLanguage="SQL">
+      <descriptions defaultDescription=""/>
+      <restriction logicalOperator="AND">
+        <filter xsi:type="Privilege:AttributeFilter" attributeName="REGION">
+          <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="Asia"/>
+        </filter>
+        <attributeName>REGION</attributeName>
+      </restriction>
+      
+      <exceptionAggregationMetadata>
+        <attribute attributeName="COUNTRY"/>
+      </exceptionAggregationMetadata>
+    </measure>
+  </restrictedMeasures>
+
+  <sortAttributes>
+
+    <sortAttribute id="Rank" direction="ASC"/>
+
+  </sortAttributes>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="100" y="105"/>
+    
+      <rectangleSize width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="-67" y="438"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Projection_2" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="260" y="443"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+  
+    
+  
+    <shape expanded="true" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="100" y="295"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="Projection_1" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="620" y="30"/>
+      <rectangleSize width="136"/>
+    </shape>
+    <shape modelObjectName="Projection_2" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="920" y="30"/>
+      <rectangleSize width="136"/>
+    </shape>
+    <shape expanded="true" modelObjectName="WindowFunction_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="100" y="205"/>
+      <rectangleSize height="30" width="160"/>
+    </shape></shapes>
+</layout>
+</Calculation:scenario>

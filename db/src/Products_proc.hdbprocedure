@@ -1,0 +1,8 @@
+PROCEDURE "Products_proc"( )
+   LANGUAGE SQLSCRIPT
+   SQL SECURITY INVOKER
+   --DEFAULT SCHEMA <default_schema_name>
+   READS SQL DATA AS
+BEGIN
+  select * from "PRODUCTS" where product_id>2;
+END

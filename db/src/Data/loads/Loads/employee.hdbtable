@@ -1,0 +1,1 @@
+COLUMN TABLE "employee1" (EMPLOYEE_ID int,FIRST_NAME varchar(100),LAST_NAME varchar(100),EMAIL varchar(100),PHONE_NUMBER varchar(20),HIRE_DATE varchar(100),JOB_ID varchar(100),	SALARY int,COMMISSION_PCT varchar(100),MANAGER_ID int,DEPARTMENT_ID int);
