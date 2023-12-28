@@ -1,0 +1,554 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:AccessControl="http://www.sap.com/ndb/SQLCoreModelAccessControl.ecore" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" xmlns:Privilege="http://www.sap.com/ndb/BiModelPrivilege.ecore" id="SAP_Tablesdata" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="true" application="BAS">
+<descriptions defaultDescription="SAP_Tablesdata"/>
+<localVariables>
+  <variable id="IP_1" parameter="true">
+    <descriptions defaultDescription=""/>
+    <variableProperties mandatory="false" defaultValue="">
+      <valueDomain type="empty"/>
+      <selection multiLine="false" type="SingleValue"/>
+      <derivationRule/>
+    </variableProperties>
+  </variable>
+  <variable id="IP_2" parameter="true">
+    <descriptions defaultDescription=""/>
+    <variableProperties mandatory="false" defaultValue="">
+      <valueDomain type="empty"/>
+      <selection multiLine="false" type="SingleValue"/>
+      <derivationRule/>
+    </variableProperties>
+  </variable>
+  <variable id="IP_3" parameter="true">
+    <descriptions defaultDescription=""/>
+    <variableProperties mandatory="false" defaultValue="">
+      <valueDomain type="empty"/>
+      <selection multiLine="false" type="SingleValue"/>
+      <derivationRule/>
+    </variableProperties>
+  </variable>
+</localVariables>
+<variableMappings/>
+<dataSources>
+  <DataSource id="VBAP2">
+    <resourceUri>VBAP2</resourceUri>
+  </DataSource>
+  <DataSource id="VBAK2">
+    <resourceUri>VBAK2</resourceUri>
+  </DataSource>
+  <DataSource id="VBRK1">
+    <resourceUri>VBRK1</resourceUri>
+  </DataSource>
+  <DataSource id="MARA2">
+    <resourceUri>MARA2</resourceUri>
+  </DataSource>
+  <DataSource id="BP0001">
+    <resourceUri>BP0001</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures/>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1">
+    <viewAttributes>
+      <viewAttribute id="SALESDOCUMENT"/>
+      <viewAttribute id="ITEMNUMBER"/>
+      <viewAttribute id="MATERIALNUMBER"/>
+      <viewAttribute id="QUANTITY"/>
+      <viewAttribute id="NETPRICE"/>
+      <viewAttribute id="ITEMVALUE"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="VBAP2"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_2">
+    <viewAttributes>
+      <viewAttribute id="SALESDOCUMENT"/>
+      <viewAttribute id="CUSTOMERNUMBER"/>
+      <viewAttribute id="SALESORG"/>
+      <viewAttribute id="DISTCHANNEL"/>
+      <viewAttribute id="DOCDATE"/>
+      <viewAttribute id="TOTALNETVALUE"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="VBAK2"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_3">
+    <viewAttributes>
+      <viewAttribute id="BILLINGDOCUMENT"/>
+      <viewAttribute id="BILLINGDATE"/>
+      <viewAttribute id="SALESDOCUMENT"/>
+      <viewAttribute id="NETVALUE"/>
+      <viewAttribute id="TAXAMOUNT"/>
+      <viewAttribute id="BILLTOPARTY"/>
+      <viewAttribute id="PAYMENTTERMS"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="VBRK1"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_4">
+    <viewAttributes>
+      <viewAttribute id="MATERIALNUMBER"/>
+      <viewAttribute id="MATERIALDESCRIPTION"/>
+      <viewAttribute id="MATERIALTYPE"/>
+      <viewAttribute id="MATERIALGROUP"/>
+      <viewAttribute id="BASEUNIT"/>
+      <viewAttribute id="PRICE"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="MARA2"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_5">
+    <viewAttributes>
+      <viewAttribute id="BUSINESSPARTNER"/>
+      <viewAttribute id="CUSTOMERNAME"/>
+      <viewAttribute id="ADDRESS"/>
+      <viewAttribute id="CITY"/>
+      <viewAttribute id="COUNTRY"/>
+      <viewAttribute id="EMAIL"/>
+      <viewAttribute id="PHONE"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="BP0001"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_1" cardinality="CN_N" joinType="leftOuter">
+    <viewAttributes>
+      <viewAttribute id="SALESDOCUMENT"/>
+      <viewAttribute id="ITEMNUMBER" aggregationType="sum"/>
+      <viewAttribute id="MATERIALNUMBER"/>
+      <viewAttribute id="QUANTITY" aggregationType="sum"/>
+      <viewAttribute id="NETPRICE" aggregationType="sum"/>
+      <viewAttribute id="ITEMVALUE" aggregationType="sum"/>
+      <viewAttribute id="CUSTOMERNUMBER"/>
+      <viewAttribute id="SALESORG"/>
+      <viewAttribute id="DISTCHANNEL"/>
+      <viewAttribute id="DOCDATE"/>
+      <viewAttribute id="TOTALNETVALUE" aggregationType="sum"/>
+      <viewAttribute hidden="true" id="JOIN$SALESDOCUMENT$SALESDOCUMENT"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Projection_1">
+      <mapping xsi:type="Calculation:AttributeMapping" target="SALESDOCUMENT" source="SALESDOCUMENT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ITEMNUMBER" source="ITEMNUMBER"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MATERIALNUMBER" source="MATERIALNUMBER"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="QUANTITY" source="QUANTITY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="NETPRICE" source="NETPRICE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ITEMVALUE" source="ITEMVALUE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$SALESDOCUMENT$SALESDOCUMENT" source="SALESDOCUMENT"/>
+    </input>
+    <input node="Projection_2">
+      <mapping xsi:type="Calculation:AttributeMapping" target="CUSTOMERNUMBER" source="CUSTOMERNUMBER"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SALESORG" source="SALESORG"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DISTCHANNEL" source="DISTCHANNEL"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DOCDATE" source="DOCDATE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TOTALNETVALUE" source="TOTALNETVALUE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$SALESDOCUMENT$SALESDOCUMENT" source="SALESDOCUMENT"/>
+    </input>
+    <joinAttribute name="JOIN$SALESDOCUMENT$SALESDOCUMENT"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_2" cardinality="CN_N" joinType="leftOuter">
+    <viewAttributes>
+      <viewAttribute id="SALESDOCUMENT"/>
+      <viewAttribute id="ITEMNUMBER" aggregationType="sum"/>
+      <viewAttribute id="MATERIALNUMBER"/>
+      <viewAttribute id="QUANTITY" aggregationType="sum"/>
+      <viewAttribute id="NETPRICE" aggregationType="sum"/>
+      <viewAttribute id="ITEMVALUE" aggregationType="sum"/>
+      <viewAttribute id="CUSTOMERNUMBER"/>
+      <viewAttribute id="SALESORG"/>
+      <viewAttribute id="DISTCHANNEL"/>
+      <viewAttribute id="DOCDATE"/>
+      <viewAttribute id="TOTALNETVALUE" aggregationType="sum"/>
+      <viewAttribute id="BILLINGDOCUMENT"/>
+      <viewAttribute id="BILLINGDATE"/>
+      <viewAttribute id="NETVALUE" aggregationType="sum"/>
+      <viewAttribute id="TAXAMOUNT" aggregationType="sum"/>
+      <viewAttribute id="BILLTOPARTY"/>
+      <viewAttribute id="PAYMENTTERMS"/>
+      <viewAttribute hidden="true" id="JOIN$SALESDOCUMENT$SALESDOCUMENT"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Join_1">
+      <mapping xsi:type="Calculation:AttributeMapping" target="SALESDOCUMENT" source="SALESDOCUMENT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ITEMNUMBER" source="ITEMNUMBER"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MATERIALNUMBER" source="MATERIALNUMBER"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="QUANTITY" source="QUANTITY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="NETPRICE" source="NETPRICE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ITEMVALUE" source="ITEMVALUE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CUSTOMERNUMBER" source="CUSTOMERNUMBER"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SALESORG" source="SALESORG"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DISTCHANNEL" source="DISTCHANNEL"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DOCDATE" source="DOCDATE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TOTALNETVALUE" source="TOTALNETVALUE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$SALESDOCUMENT$SALESDOCUMENT" source="SALESDOCUMENT"/>
+    </input>
+    <input node="Projection_3">
+      <mapping xsi:type="Calculation:AttributeMapping" target="BILLINGDOCUMENT" source="BILLINGDOCUMENT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="BILLINGDATE" source="BILLINGDATE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="NETVALUE" source="NETVALUE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TAXAMOUNT" source="TAXAMOUNT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="BILLTOPARTY" source="BILLTOPARTY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PAYMENTTERMS" source="PAYMENTTERMS"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$SALESDOCUMENT$SALESDOCUMENT" source="SALESDOCUMENT"/>
+    </input>
+    <joinAttribute name="JOIN$SALESDOCUMENT$SALESDOCUMENT"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_3" cardinality="CN_N" joinType="leftOuter">
+    <viewAttributes>
+      <viewAttribute id="SALESDOCUMENT"/>
+      <viewAttribute id="ITEMNUMBER" aggregationType="sum"/>
+      <viewAttribute id="MATERIALNUMBER"/>
+      <viewAttribute id="QUANTITY" aggregationType="sum"/>
+      <viewAttribute id="NETPRICE" aggregationType="sum"/>
+      <viewAttribute id="ITEMVALUE" aggregationType="sum"/>
+      <viewAttribute id="CUSTOMERNUMBER"/>
+      <viewAttribute id="SALESORG"/>
+      <viewAttribute id="DISTCHANNEL"/>
+      <viewAttribute id="DOCDATE"/>
+      <viewAttribute id="TOTALNETVALUE" aggregationType="sum"/>
+      <viewAttribute id="BILLINGDOCUMENT"/>
+      <viewAttribute id="BILLINGDATE"/>
+      <viewAttribute id="NETVALUE" aggregationType="sum"/>
+      <viewAttribute id="TAXAMOUNT" aggregationType="sum"/>
+      <viewAttribute id="BILLTOPARTY"/>
+      <viewAttribute id="PAYMENTTERMS"/>
+      <viewAttribute id="BUSINESSPARTNER"/>
+      <viewAttribute id="CUSTOMERNAME"/>
+      <viewAttribute id="ADDRESS"/>
+      <viewAttribute id="CITY"/>
+      <viewAttribute id="COUNTRY"/>
+      <viewAttribute id="EMAIL"/>
+      <viewAttribute id="PHONE"/>
+      <viewAttribute hidden="true" id="JOIN$CUSTOMERNUMBER$BUSINESSPARTNER"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Join_2">
+      <mapping xsi:type="Calculation:AttributeMapping" target="SALESDOCUMENT" source="SALESDOCUMENT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ITEMNUMBER" source="ITEMNUMBER"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MATERIALNUMBER" source="MATERIALNUMBER"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="QUANTITY" source="QUANTITY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="NETPRICE" source="NETPRICE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ITEMVALUE" source="ITEMVALUE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CUSTOMERNUMBER" source="CUSTOMERNUMBER"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SALESORG" source="SALESORG"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DISTCHANNEL" source="DISTCHANNEL"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DOCDATE" source="DOCDATE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TOTALNETVALUE" source="TOTALNETVALUE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="BILLINGDOCUMENT" source="BILLINGDOCUMENT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="BILLINGDATE" source="BILLINGDATE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="NETVALUE" source="NETVALUE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TAXAMOUNT" source="TAXAMOUNT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="BILLTOPARTY" source="BILLTOPARTY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PAYMENTTERMS" source="PAYMENTTERMS"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$CUSTOMERNUMBER$BUSINESSPARTNER" source="CUSTOMERNUMBER"/>
+    </input>
+    <input node="Projection_5">
+      <mapping xsi:type="Calculation:AttributeMapping" target="BUSINESSPARTNER" source="BUSINESSPARTNER"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CUSTOMERNAME" source="CUSTOMERNAME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ADDRESS" source="ADDRESS"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CITY" source="CITY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="COUNTRY" source="COUNTRY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="EMAIL" source="EMAIL"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PHONE" source="PHONE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$CUSTOMERNUMBER$BUSINESSPARTNER" source="BUSINESSPARTNER"/>
+    </input>
+    <joinAttribute name="JOIN$CUSTOMERNUMBER$BUSINESSPARTNER"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_4" cardinality="CN_N" joinType="leftOuter">
+    <viewAttributes>
+      <viewAttribute id="SALESDOCUMENT"/>
+      <viewAttribute id="ITEMNUMBER" aggregationType="sum"/>
+      <viewAttribute id="MATERIALNUMBER"/>
+      <viewAttribute id="QUANTITY" aggregationType="sum"/>
+      <viewAttribute id="NETPRICE" aggregationType="sum"/>
+      <viewAttribute id="ITEMVALUE" aggregationType="sum"/>
+      <viewAttribute id="CUSTOMERNUMBER"/>
+      <viewAttribute id="SALESORG"/>
+      <viewAttribute id="DISTCHANNEL"/>
+      <viewAttribute id="DOCDATE"/>
+      <viewAttribute id="TOTALNETVALUE" aggregationType="sum"/>
+      <viewAttribute id="BILLINGDOCUMENT"/>
+      <viewAttribute id="BILLINGDATE"/>
+      <viewAttribute id="NETVALUE" aggregationType="sum"/>
+      <viewAttribute id="TAXAMOUNT" aggregationType="sum"/>
+      <viewAttribute id="BILLTOPARTY"/>
+      <viewAttribute id="PAYMENTTERMS"/>
+      <viewAttribute id="BUSINESSPARTNER"/>
+      <viewAttribute id="CUSTOMERNAME"/>
+      <viewAttribute id="ADDRESS"/>
+      <viewAttribute id="CITY"/>
+      <viewAttribute id="COUNTRY"/>
+      <viewAttribute id="EMAIL"/>
+      <viewAttribute id="PHONE"/>
+      <viewAttribute id="MATERIALDESCRIPTION"/>
+      <viewAttribute id="MATERIALTYPE"/>
+      <viewAttribute id="MATERIALGROUP"/>
+      <viewAttribute id="BASEUNIT"/>
+      <viewAttribute id="PRICE" aggregationType="sum"/>
+      <viewAttribute hidden="true" id="JOIN$MATERIALNUMBER$MATERIALNUMBER"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Join_3">
+      <mapping xsi:type="Calculation:AttributeMapping" target="SALESDOCUMENT" source="SALESDOCUMENT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ITEMNUMBER" source="ITEMNUMBER"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MATERIALNUMBER" source="MATERIALNUMBER"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="QUANTITY" source="QUANTITY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="NETPRICE" source="NETPRICE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ITEMVALUE" source="ITEMVALUE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CUSTOMERNUMBER" source="CUSTOMERNUMBER"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SALESORG" source="SALESORG"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DISTCHANNEL" source="DISTCHANNEL"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DOCDATE" source="DOCDATE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TOTALNETVALUE" source="TOTALNETVALUE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="BILLINGDOCUMENT" source="BILLINGDOCUMENT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="BILLINGDATE" source="BILLINGDATE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="NETVALUE" source="NETVALUE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TAXAMOUNT" source="TAXAMOUNT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="BILLTOPARTY" source="BILLTOPARTY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PAYMENTTERMS" source="PAYMENTTERMS"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="BUSINESSPARTNER" source="BUSINESSPARTNER"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CUSTOMERNAME" source="CUSTOMERNAME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ADDRESS" source="ADDRESS"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CITY" source="CITY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="COUNTRY" source="COUNTRY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="EMAIL" source="EMAIL"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PHONE" source="PHONE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$MATERIALNUMBER$MATERIALNUMBER" source="MATERIALNUMBER"/>
+    </input>
+    <input node="Projection_4">
+      <mapping xsi:type="Calculation:AttributeMapping" target="MATERIALDESCRIPTION" source="MATERIALDESCRIPTION"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MATERIALTYPE" source="MATERIALTYPE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MATERIALGROUP" source="MATERIALGROUP"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="BASEUNIT" source="BASEUNIT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PRICE" source="PRICE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$MATERIALNUMBER$MATERIALNUMBER" source="MATERIALNUMBER"/>
+    </input>
+    <joinAttribute name="JOIN$MATERIALNUMBER$MATERIALNUMBER"/>
+  </calculationView>
+</calculationViews>
+
+<logicalModel id="Join_4">
+  <attributes>
+    <attribute id="SALESDOCUMENT" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="SALESDOCUMENT"/>
+      <keyMapping columnObjectName="Join_4" columnName="SALESDOCUMENT"/>
+    </attribute>
+    <attribute id="ITEMNUMBER" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ITEMNUMBER"/>
+      <keyMapping columnObjectName="Join_4" columnName="ITEMNUMBER"/>
+    </attribute>
+    <attribute id="MATERIALNUMBER" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="MATERIALNUMBER"/>
+      <keyMapping columnObjectName="Join_4" columnName="MATERIALNUMBER"/>
+    </attribute>
+    <attribute id="NETPRICE" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="NETPRICE"/>
+      <keyMapping columnObjectName="Join_4" columnName="NETPRICE"/>
+    </attribute>
+    <attribute id="ITEMVALUE" order="6" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ITEMVALUE"/>
+      <keyMapping columnObjectName="Join_4" columnName="ITEMVALUE"/>
+    </attribute>
+    <attribute id="CUSTOMERNUMBER" order="7" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CUSTOMERNUMBER"/>
+      <keyMapping columnObjectName="Join_4" columnName="CUSTOMERNUMBER"/>
+    </attribute>
+    <attribute id="SALESORG" order="8" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="SALESORG"/>
+      <keyMapping columnObjectName="Join_4" columnName="SALESORG"/>
+    </attribute>
+    <attribute id="DISTCHANNEL" order="9" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="DISTCHANNEL"/>
+      <keyMapping columnObjectName="Join_4" columnName="DISTCHANNEL"/>
+    </attribute>
+    <attribute id="DOCDATE" order="10" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="DOCDATE"/>
+      <keyMapping columnObjectName="Join_4" columnName="DOCDATE"/>
+    </attribute>
+    <attribute id="TOTALNETVALUE" order="11" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="TOTALNETVALUE"/>
+      <keyMapping columnObjectName="Join_4" columnName="TOTALNETVALUE"/>
+    </attribute>
+    <attribute id="BILLINGDOCUMENT" order="12" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="BILLINGDOCUMENT"/>
+      <keyMapping columnObjectName="Join_4" columnName="BILLINGDOCUMENT"/>
+    </attribute>
+    <attribute id="BILLINGDATE" order="13" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="BILLINGDATE"/>
+      <keyMapping columnObjectName="Join_4" columnName="BILLINGDATE"/>
+    </attribute>
+    <attribute id="NETVALUE" order="14" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="NETVALUE"/>
+      <keyMapping columnObjectName="Join_4" columnName="NETVALUE"/>
+    </attribute>
+    <attribute id="TAXAMOUNT" order="15" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="TAXAMOUNT"/>
+      <keyMapping columnObjectName="Join_4" columnName="TAXAMOUNT"/>
+    </attribute>
+    <attribute id="BILLTOPARTY" order="16" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="BILLTOPARTY"/>
+      <keyMapping columnObjectName="Join_4" columnName="BILLTOPARTY"/>
+    </attribute>
+    <attribute id="PAYMENTTERMS" order="17" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PAYMENTTERMS"/>
+      <keyMapping columnObjectName="Join_4" columnName="PAYMENTTERMS"/>
+    </attribute>
+    <attribute id="BUSINESSPARTNER" order="18" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="BUSINESSPARTNER"/>
+      <keyMapping columnObjectName="Join_4" columnName="BUSINESSPARTNER"/>
+    </attribute>
+    <attribute id="CUSTOMERNAME" order="19" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CUSTOMERNAME"/>
+      <keyMapping columnObjectName="Join_4" columnName="CUSTOMERNAME"/>
+    </attribute>
+    <attribute id="ADDRESS" order="20" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ADDRESS"/>
+      <keyMapping columnObjectName="Join_4" columnName="ADDRESS"/>
+    </attribute>
+    <attribute id="CITY" order="21" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CITY"/>
+      <keyMapping columnObjectName="Join_4" columnName="CITY"/>
+    </attribute>
+    <attribute id="COUNTRY" order="22" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="COUNTRY"/>
+      <keyMapping columnObjectName="Join_4" columnName="COUNTRY"/>
+    </attribute>
+    <attribute id="EMAIL" order="23" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="EMAIL"/>
+      <keyMapping columnObjectName="Join_4" columnName="EMAIL"/>
+    </attribute>
+    <attribute id="PHONE" order="24" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PHONE"/>
+      <keyMapping columnObjectName="Join_4" columnName="PHONE"/>
+    </attribute>
+    <attribute id="MATERIALDESCRIPTION" order="25" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="MATERIALDESCRIPTION"/>
+      <keyMapping columnObjectName="Join_4" columnName="MATERIALDESCRIPTION"/>
+    </attribute>
+    <attribute id="MATERIALTYPE" order="26" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="MATERIALTYPE"/>
+      <keyMapping columnObjectName="Join_4" columnName="MATERIALTYPE"/>
+    </attribute>
+    <attribute id="MATERIALGROUP" order="27" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="MATERIALGROUP"/>
+      <keyMapping columnObjectName="Join_4" columnName="MATERIALGROUP"/>
+    </attribute>
+    <attribute id="BASEUNIT" order="28" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="BASEUNIT"/>
+      <keyMapping columnObjectName="Join_4" columnName="BASEUNIT"/>
+    </attribute>
+    <attribute id="PRICE" order="29" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PRICE"/>
+      <keyMapping columnObjectName="Join_4" columnName="PRICE"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="QUANTITY" order="4" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="QUANTITY"/>
+      <measureMapping columnObjectName="Join_4" columnName="QUANTITY"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures>
+    <measure id="COUNT_1" hidden="false" order="30" aggregationType="sum" measureType="simple" calculatedMeasureType="counter" datatype="BIGINT" length="">
+      <exceptionAggregation>
+        <attribute attributeName="SALESDOCUMENT"/>
+      </exceptionAggregation>
+      <formula>1</formula>
+      
+      <exceptionAggregationMetadata/>
+    </measure>
+  </calculatedMeasures>
+  <restrictedMeasures>
+    <measure id="Quantity_Res" order="31" aggregationType="sum" datatype="BIGINT" length="19" scale="0" baseMeasure="QUANTITY" restrictionExpressionLanguage="SQL">
+      <descriptions defaultDescription=""/>
+      <restriction logicalOperator="AND">
+        <filter xsi:type="Privilege:AttributeFilter" attributeName="MATERIALDESCRIPTION">
+          <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="Computer"/>
+        </filter>
+        <attributeName>MATERIALDESCRIPTION</attributeName>
+      </restriction>
+      <exceptionAggregationMetadata/>
+    </measure>
+  </restrictedMeasures>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="534" y="112"/>
+    
+      <rectangleSize width="160"/>
+    </shape>
+    
+  
+    <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="91" y="856"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Projection_2" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="302" y="856"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Projection_3" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="380" y="696"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Projection_4" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="592" y="376"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Projection_5" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="477" y="536"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="118" y="696"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="Projection_1" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="187"/>
+    </shape>
+    <shape modelObjectName="Projection_2" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="196"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Join_2" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="145" y="536"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="Join_1" modelObjectNameSpace="Join_2" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="196"/>
+    </shape>
+    <shape modelObjectName="Projection_3" modelObjectNameSpace="Join_2" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="191"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Join_3" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="172" y="376"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="Join_2" modelObjectNameSpace="Join_3" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="196"/>
+    </shape>
+    <shape modelObjectName="Projection_5" modelObjectNameSpace="Join_3" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="193"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Join_4" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="534" y="217"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="Join_3" modelObjectNameSpace="Join_4" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="196"/>
+    </shape>
+    <shape modelObjectName="Projection_4" modelObjectNameSpace="Join_4" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="215"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

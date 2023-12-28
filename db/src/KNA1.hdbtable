@@ -1,0 +1,1 @@
+COLUMN TABLE "KNA1" (KUNNR int,NAME1 varchar(100),STRAS nvarchar(200),ORTO1 nvarchar(200),LAND1 char(100)) 

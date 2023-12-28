@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="SAP_TABLES" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="true">
+<descriptions defaultDescription="SAP_TABLES"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="VBAP">
+    <resourceUri>VBAP</resourceUri>
+  </DataSource>
+  <DataSource id="VBAK">
+    <resourceUri>VBAK</resourceUri>
+  </DataSource>
+  <DataSource id="KNA1">
+    <resourceUri>KNA1</resourceUri>
+  </DataSource>
+  <DataSource id="T001W">
+    <resourceUri>T001W</resourceUri>
+  </DataSource>
+  <DataSource id="MARA">
+    <resourceUri>MARA</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures/>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1">
+    <viewAttributes>
+      <viewAttribute id="VBELN_1"/>
+      <viewAttribute id="POSNR"/>
+      <viewAttribute id="MATNR"/>
+      <viewAttribute id="PSTYV"/>
+      <viewAttribute id="WERKS"/>
+      <viewAttribute id="MENGE"/>
+      <viewAttribute id="NETPR"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="VBAP">
+      <mapping xsi:type="Calculation:AttributeMapping" target="VBELN_1" source="VBELN"/>
+    </input>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_2">
+    <viewAttributes>
+      <viewAttribute id="VBELN"/>
+      <viewAttribute id="ERDAT"/>
+      <viewAttribute id="NETWR"/>
+      <viewAttribute id="WAERK"/>
+      <viewAttribute id="VKORG"/>
+      <viewAttribute id="KUNNR"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="VBAK"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_3">
+    <viewAttributes>
+      <viewAttribute keepFlag="true" id="KUNNR"/>
+      <viewAttribute keepFlag="true" id="NAME1"/>
+      <viewAttribute keepFlag="true" id="STRAS"/>
+      <viewAttribute keepFlag="true" id="ORTO1"/>
+      <viewAttribute keepFlag="true" id="LAND1"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="KNA1"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_4">
+    <viewAttributes>
+      <viewAttribute id="WERKS"/>
+      <viewAttribute id="NAME"/>
+      <viewAttribute id="LAND1"/>
+      <viewAttribute id="CITY"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="T001W"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_5">
+    <viewAttributes>
+      <viewAttribute id="MATNR"/>
+      <viewAttribute id="MTART"/>
+      <viewAttribute id="MAKTX"/>
+      <viewAttribute id="MEINS"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="MARA"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_1" cardinality="CN_N" joinType="inner" optimizeJoinColumns="true" greedyJoinPruning="both">
+    <viewAttributes>
+      <viewAttribute id="VBELN" aggregationType="sum"/>
+      <viewAttribute id="ERDAT"/>
+      <viewAttribute id="NETWR" aggregationType="sum"/>
+      <viewAttribute id="WAERK"/>
+      <viewAttribute id="VKORG" aggregationType="sum"/>
+      <viewAttribute id="KUNNR" aggregationType="sum"/>
+      <viewAttribute id="KUNNR_1" aggregationType="sum"/>
+      <viewAttribute id="NAME1"/>
+      <viewAttribute id="STRAS"/>
+      <viewAttribute id="ORTO1"/>
+      <viewAttribute id="LAND1"/>
+      <viewAttribute hidden="true" id="JOIN$KUNNR$KUNNR"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Projection_2">
+      <mapping xsi:type="Calculation:AttributeMapping" target="VBELN" source="VBELN"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ERDAT" source="ERDAT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="NETWR" source="NETWR"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="WAERK" source="WAERK"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="VKORG" source="VKORG"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="KUNNR" source="KUNNR"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$KUNNR$KUNNR" source="KUNNR"/>
+    </input>
+    <input node="Projection_3">
+      <mapping xsi:type="Calculation:AttributeMapping" target="KUNNR_1" source="KUNNR"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="NAME1" source="NAME1"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="STRAS" source="STRAS"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ORTO1" source="ORTO1"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="LAND1" source="LAND1"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$KUNNR$KUNNR" source="KUNNR"/>
+    </input>
+    <joinAttribute name="JOIN$KUNNR$KUNNR"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_2" cardinality="CN_N" joinType="inner">
+    <viewAttributes>
+      <viewAttribute id="VBELN_1" aggregationType="sum"/>
+      <viewAttribute id="POSNR" aggregationType="sum"/>
+      <viewAttribute id="MATNR"/>
+      <viewAttribute id="PSTYV"/>
+      <viewAttribute id="WERKS" aggregationType="sum"/>
+      <viewAttribute id="MENGE" aggregationType="sum"/>
+      <viewAttribute id="NETPR" aggregationType="sum"/>
+      <viewAttribute id="WERKS_1" aggregationType="sum"/>
+      <viewAttribute id="NAME"/>
+      <viewAttribute id="LAND1"/>
+      <viewAttribute id="CITY"/>
+      <viewAttribute id="WERKS_2" aggregationType="sum"/>
+      <viewAttribute hidden="true" id="JOIN$WERKS$WERKS"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Projection_4"/>
+    <input node="Projection_1">
+      <mapping xsi:type="Calculation:AttributeMapping" target="VBELN_1" source="VBELN_1"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="POSNR" source="POSNR"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MATNR" source="MATNR"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PSTYV" source="PSTYV"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="WERKS" source="WERKS"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MENGE" source="MENGE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="NETPR" source="NETPR"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="WERKS_2" source="WERKS"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$WERKS$WERKS" source="WERKS"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$WERKS$WERKS" source="WERKS"/>
+    </input>
+    <joinAttribute name="JOIN$WERKS$WERKS"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_3" cardinality="CN_N" joinType="inner">
+    <viewAttributes>
+      <viewAttribute id="VBELN_1" aggregationType="sum"/>
+      <viewAttribute id="POSNR" aggregationType="sum"/>
+      <viewAttribute id="MATNR"/>
+      <viewAttribute id="PSTYV"/>
+      <viewAttribute id="WERKS" aggregationType="sum"/>
+      <viewAttribute id="MENGE" aggregationType="sum"/>
+      <viewAttribute id="NETPR" aggregationType="sum"/>
+      <viewAttribute id="WERKS_1" aggregationType="sum"/>
+      <viewAttribute id="NAME"/>
+      <viewAttribute id="LAND1"/>
+      <viewAttribute id="CITY"/>
+      <viewAttribute id="MATNR_1"/>
+      <viewAttribute id="MTART"/>
+      <viewAttribute id="MAKTX"/>
+      <viewAttribute id="MEINS"/>
+      <viewAttribute hidden="true" id="JOIN$MATNR$MATNR"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Join_2">
+      <mapping xsi:type="Calculation:AttributeMapping" target="VBELN_1" source="VBELN_1"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="POSNR" source="POSNR"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MATNR" source="MATNR"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PSTYV" source="PSTYV"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="WERKS" source="WERKS"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MENGE" source="MENGE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="NETPR" source="NETPR"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="WERKS_1" source="WERKS_1"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="NAME" source="NAME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="LAND1" source="LAND1"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CITY" source="CITY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$MATNR$MATNR" source="MATNR"/>
+    </input>
+    <input node="Projection_5">
+      <mapping xsi:type="Calculation:AttributeMapping" target="MATNR_1" source="MATNR"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MTART" source="MTART"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MAKTX" source="MAKTX"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MEINS" source="MEINS"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$MATNR$MATNR" source="MATNR"/>
+    </input>
+    <joinAttribute name="JOIN$MATNR$MATNR"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_4" cardinality="CN_N" joinType="inner">
+    <viewAttributes>
+      <viewAttribute id="VBELN_1" aggregationType="sum"/>
+      <viewAttribute id="POSNR" aggregationType="sum"/>
+      <viewAttribute id="MATNR"/>
+      <viewAttribute id="PSTYV"/>
+      <viewAttribute id="WERKS" aggregationType="sum"/>
+      <viewAttribute id="MENGE" aggregationType="sum"/>
+      <viewAttribute id="NETPR" aggregationType="sum"/>
+      <viewAttribute id="WERKS_1" aggregationType="sum"/>
+      <viewAttribute id="NAME"/>
+      <viewAttribute id="LAND1"/>
+      <viewAttribute id="CITY"/>
+      <viewAttribute id="MATNR_1"/>
+      <viewAttribute id="MTART"/>
+      <viewAttribute id="MAKTX"/>
+      <viewAttribute id="MEINS"/>
+      <viewAttribute hidden="true" id="JOIN$VBELN$VBELN_1"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Join_1">
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$VBELN$VBELN_1" source="VBELN"/>
+    </input>
+    <input node="Join_3">
+      <mapping xsi:type="Calculation:AttributeMapping" target="VBELN_1" source="VBELN_1"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="POSNR" source="POSNR"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MATNR" source="MATNR"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PSTYV" source="PSTYV"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="WERKS" source="WERKS"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MENGE" source="MENGE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="NETPR" source="NETPR"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="WERKS_1" source="WERKS_1"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="NAME" source="NAME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="LAND1" source="LAND1"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CITY" source="CITY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MATNR_1" source="MATNR_1"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MTART" source="MTART"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MAKTX" source="MAKTX"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MEINS" source="MEINS"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$VBELN$VBELN_1" source="VBELN_1"/>
+    </input>
+    <joinAttribute name="JOIN$VBELN$VBELN_1"/>
+  </calculationView>
+</calculationViews>
+
+<logicalModel id="Join_4">
+  <attributes>
+    <attribute id="VBELN_1" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="VBELN_1"/>
+      <keyMapping columnObjectName="Join_4" columnName="VBELN_1"/>
+    </attribute>
+    <attribute id="POSNR" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="POSNR"/>
+      <keyMapping columnObjectName="Join_4" columnName="POSNR"/>
+    </attribute>
+    <attribute id="MATNR" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="MATNR"/>
+      <keyMapping columnObjectName="Join_4" columnName="MATNR"/>
+    </attribute>
+    <attribute id="PSTYV" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PSTYV"/>
+      <keyMapping columnObjectName="Join_4" columnName="PSTYV"/>
+    </attribute>
+    <attribute id="WERKS" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="WERKS"/>
+      <keyMapping columnObjectName="Join_4" columnName="WERKS"/>
+    </attribute>
+    <attribute id="NETPR" order="7" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="NETPR"/>
+      <keyMapping columnObjectName="Join_4" columnName="NETPR"/>
+    </attribute>
+    <attribute id="WERKS_1" order="8" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="WERKS"/>
+      <keyMapping columnObjectName="Join_4" columnName="WERKS_1"/>
+    </attribute>
+    <attribute id="NAME" order="9" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="NAME"/>
+      <keyMapping columnObjectName="Join_4" columnName="NAME"/>
+    </attribute>
+    <attribute id="LAND1" order="10" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="LAND1"/>
+      <keyMapping columnObjectName="Join_4" columnName="LAND1"/>
+    </attribute>
+    <attribute id="CITY_1" order="11" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CITY"/>
+      <keyMapping columnObjectName="Join_4" columnName="CITY"/>
+    </attribute>
+    <attribute id="MATNR_1" order="12" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="MATNR"/>
+      <keyMapping columnObjectName="Join_4" columnName="MATNR_1"/>
+    </attribute>
+    <attribute id="MTART" order="13" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="MTART"/>
+      <keyMapping columnObjectName="Join_4" columnName="MTART"/>
+    </attribute>
+    <attribute id="MAKTX" order="14" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="MAKTX"/>
+      <keyMapping columnObjectName="Join_4" columnName="MAKTX"/>
+    </attribute>
+    <attribute id="MEINS" order="15" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="MEINS"/>
+      <keyMapping columnObjectName="Join_4" columnName="MEINS"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="MENGE" order="6" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="MENGE"/>
+      <measureMapping columnObjectName="Join_4" columnName="MENGE"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+    
+  
+    <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="227" y="615"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Projection_2" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="-362" y="587"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Projection_3" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="-42" y="597"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Projection_4" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="588" y="632"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="-202" y="373"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="Projection_2" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="Projection_3" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Projection_5" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="738" y="471"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Join_3" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="508" y="187"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="Join_2" modelObjectNameSpace="Join_3" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="Projection_5" modelObjectNameSpace="Join_3" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Join_2" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="387" y="471"/>
+      <rectangleSize height="30" width="160"/>
+    </shape><shape><upperLeftCorner/><rectangleSize/></shape>
+    <shape modelObjectName="Projection_4" modelObjectNameSpace="Join_2" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="782" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="Projection_1" modelObjectNameSpace="Join_2" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="121" y="40"/>
+      <rectangleSize width="100"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Join_4" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="118" y="202"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="Join_1" modelObjectNameSpace="Join_4" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="137"/>
+    </shape>
+    <shape modelObjectName="Join_3" modelObjectNameSpace="Join_4" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="138"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

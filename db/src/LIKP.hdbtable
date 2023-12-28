@@ -1,0 +1,9 @@
+Column TABLE LIKP1 (
+    Delivery Nvarchar(225) primary key,
+    DeliveryDate DATE,
+    SalesDocument Nvarchar(225),
+    ShippingPoint NVARCHAR(10),
+    ShipToParty Nvarchar(225),
+    TotalWeight  Nvarchar(225),
+    DeliveryStatus NVARCHAR(225)
+);

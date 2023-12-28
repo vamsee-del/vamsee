@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="CV_EMP1" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="true">
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="CV_EMP1" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="true" maskMode="SESSIONUSER">
 <descriptions defaultDescription="CV_EMP1"/>
 <localVariables/>
 <variableMappings/>
@@ -132,6 +132,17 @@
       <measureMapping columnObjectName="Rank_1" columnName="Rank_Column"/>
       <exceptionAggregationMetadata/>
     </measure>
+  
+    <measure id="SALES_1" order="15" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="SALES_1"/>
+      <measureMapping columnObjectName="Rank_1" columnName="SALES"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+    <measure id="MSRP_conversion" order="16" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="MSRP_1"/>
+      <measureMapping columnObjectName="Rank_1" columnName="MSRP"/>
+      <exceptionAggregationMetadata/>
+    </measure>
   </baseMeasures>
   <calculatedMeasures/>
   <restrictedMeasures/>
@@ -150,7 +161,7 @@
     </shape>
   
     <shape expanded="true" modelObjectName="Rank_1" modelObjectNameSpace="CalculationView">
-      <upperLeftCorner x="100" y="190"/>
+      <upperLeftCorner x="100" y="227"/>
       <rectangleSize height="30" width="160"/>
     </shape>
   </shapes>

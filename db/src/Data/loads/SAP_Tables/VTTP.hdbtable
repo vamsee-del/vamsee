@@ -1,0 +1,9 @@
+Column TABLE VTTP1 (
+    ShipmentNumber NVARCHAR(10),
+    ShipmentItem INT,
+    Delivery NVARCHAR(10),
+    DeliveryItem INT,
+    Quantity INT,
+    Weight NVARCHAR(10),
+    PRIMARY KEY (ShipmentNumber, ShipmentItem)
+);

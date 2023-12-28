@@ -1,0 +1,9 @@
+column TABLE VBAP2 (
+    SalesDocument nvarchar(225),
+    ItemNumber bigINT,
+    MaterialNumber varchar(225),
+    Quantity bigINT,
+    NetPrice DECIMAL(18, 2),
+    ItemValue DECIMAL(18, 2),
+    PRIMARY KEY (SalesDocument, ItemNumber)
+);

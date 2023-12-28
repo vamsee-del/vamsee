@@ -1,0 +1,1 @@
+COLUMN TABLE "T001W" (WERKS int,NAME nvarchar(200),LAND1 char(100),CITY varchar(100))

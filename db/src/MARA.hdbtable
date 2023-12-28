@@ -1,0 +1,1 @@
+COLUMN TABLE "MARA" (MATNR nvarchar(200),MTART varchar(100),MAKTX varchar(100),MEINS char(100))

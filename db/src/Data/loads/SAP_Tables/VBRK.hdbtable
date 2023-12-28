@@ -1,0 +1,9 @@
+Column TABLE VBRK1 (
+    BillingDocument NVARCHAR(10) PRIMARY KEY,
+    BillingDate DATE,
+    SalesDocument NVARCHAR(10),
+    NetValue DECIMAL(18, 2),
+    TaxAmount DECIMAL(18, 2),
+    BillToParty NVARCHAR(10),
+    PaymentTerms NVARCHAR(10)
+);

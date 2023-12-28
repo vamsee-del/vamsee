@@ -1,0 +1,6 @@
+Column TABLE TVKOS1(
+    SalesOrg NVARCHAR(10),
+    DistChannel NVARCHAR(255),
+    Description NVARCHAR(255),
+    PRIMARY KEY (SalesOrg, DistChannel)
+);

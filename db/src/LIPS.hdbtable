@@ -1,0 +1,10 @@
+Column TABLE LIPS1(
+    Delivery NVARCHAR(225),
+    DeliveryItem INT,
+    MaterialNumber NVARCHAR(10),
+    Quantity INT,
+    Batch NVARCHAR(225),
+    Plant NVARCHAR(225),
+    StorageLoc NVARCHAR(225),
+    PRIMARY KEY (Delivery, DeliveryItem)
+);

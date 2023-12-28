@@ -1,0 +1,8 @@
+Column TABLE MARA2 (
+    MaterialNumber Nvarchar(225) primary key,
+    MaterialDescription VARCHAR(255),
+    MaterialType VARCHAR(50),
+    MaterialGroup VARCHAR(50),
+    BaseUnit VARCHAR(10),
+    Price DECIMAL(10, 2)
+);

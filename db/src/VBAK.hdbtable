@@ -1,0 +1,1 @@
+COLUMN TABLE "VBAK" (VBELN int primary key,ERDAT nvarchar(200),KUNNR int,VBTYP char(100),AUART char(100),NETWR DEC(38,4),WAERK varchar(100),BSTNK nvarchar(200),VKORG int,VTWEG int,SPART int)
