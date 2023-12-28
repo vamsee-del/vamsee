@@ -14,9 +14,7 @@
     <viewAttributes>
       <viewAttribute id="SALE_ID"/>
       <viewAttribute id="PRODUCT_ID"/>
-      <viewAttribute id="PRODUCT_UNIT"/>
-      <viewAttribute id="PRODUCT_PRICE"/>
-    </viewAttributes>
+      <viewAttribute id="PRODUCT_UNIT"/></viewAttributes>
     <calculatedViewAttributes/>
     <input node="PRODUCTS"/>
   </calculationView>
@@ -40,13 +38,7 @@
       <descriptions defaultDescription="PRODUCT_ID"/>
       <measureMapping columnObjectName="Projection_1" columnName="PRODUCT_ID"/>
       <exceptionAggregationMetadata/>
-    </measure>
-    <measure id="PRODUCT_PRICE" order="4" aggregationType="sum" measureType="simple">
-      <descriptions defaultDescription="PRODUCT_PRICE"/>
-      <measureMapping columnObjectName="Projection_1" columnName="PRODUCT_PRICE"/>
-      <exceptionAggregationMetadata/>
-    </measure>
-  </baseMeasures>
+    </measure></baseMeasures>
   <calculatedMeasures/>
   <restrictedMeasures/>
   <localDimensions/>
